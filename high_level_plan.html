@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>High Level Plan - Jaisalmer 50K Build</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f766e'/%3E%3Cpath d='M8 44 25 18l8 12 6-8 17 22H8Z' fill='%23ffffff'/%3E%3Cpath d='M25 18l8 12-5-2-4 5-4-4-12 15h48L39 22l-6 8-8-12Z' fill='%23d1fae5'/%3E%3Ctext x='32' y='56' font-family='Arial,sans-serif' font-size='14' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EKC%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5d6a76;
+      --line: #d9e0e7;
+      --panel: #f6f8fa;
+      --paper: #ffffff;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --good: #047857;
+      --warn: #92400e;
+      --bad: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: var(--ink);
+      background: #edf1f5;
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    header, section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+    }
+    header { margin-bottom: 18px; }
+    section { margin-top: 18px; }
+    h1, h2, h3 { line-height: 1.2; margin: 0; }
+    h1 { font-size: clamp(30px, 4vw, 46px); }
+    h2 { font-size: 24px; margin-bottom: 12px; }
+    h3 { font-size: 18px; margin-bottom: 8px; }
+    p { margin: 8px 0 0; }
+    a { color: #075985; }
+    .lede {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 12px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .note {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+    }
+    .note strong { color: var(--ink); }
+    .warning {
+      border-left: 4px solid var(--bad);
+      background: #fff5f5;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #e9eef3;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #334155;
+    }
+    td small {
+      color: var(--muted);
+      display: block;
+      margin-top: 3px;
+    }
+    ul { margin: 10px 0 0 20px; padding: 0; }
+    li { margin: 5px 0; }
+    .two-col {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .section-label {
+      font-size: 13px;
+      font-weight: 750;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 8px;
+    }
+    .status-row {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .status {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .status h3 { margin-bottom: 6px; }
+    .good { color: var(--good); }
+    .warn { color: var(--warn); }
+    .bad { color: var(--bad); }
+    @media (max-width: 850px) {
+      main { width: min(100% - 20px, 1180px); padding-top: 10px; }
+      header, section { padding: 16px; }
+      .grid.cols-2, .grid.cols-3, .two-col, .status-row { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+      td { white-space: normal; min-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="section-label">KC Training Philosophy</div>
+    <h1>High Level Plan</h1>
+    <p class="lede">
+      This is the week-on-week operating system for the Jaisalmer 50K build. It combines the athlete profile, Plan B running volume,
+      and the first strength block into one reusable planning sheet.
+    </p>
+    <div class="meta">
+      <a class="pill" href="index.html">Back to KC qualification page</a>
+      <span class="pill">Plan B default path</span>
+      <span class="pill">60 km by week 8</span>
+      <span class="pill">80 km only if absorbed well</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Athlete Context</h2>
+    <div class="grid cols-2">
+      <div class="note">
+        <h3>Current State</h3>
+        <ul>
+          <li>Restarting after roughly 7 months of detraining.</li>
+          <li>Current limiter is structural tolerance, not motivation.</li>
+          <li>Lower back, hips, glutes, and posterior chain need reloading.</li>
+          <li>Running remains the KC priority, but the athlete should stay hybrid / triathlon-oriented.</li>
+        </ul>
+      </div>
+      <div class="note warning">
+        <h3>Early Risk Flags</h3>
+        <ul>
+          <li>Barbell rows, heavy deadlifts, and high-fatigue hinge work are not early defaults.</li>
+          <li>Back-safe strength work is required, not optional.</li>
+          <li>The first 60 days are an eligibility test for durability.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Core Philosophy</h2>
+    <div class="two-col">
+      <div class="note">
+        <h3>Order Of Priority</h3>
+        <ol>
+          <li>Durability first: back, hips, calves, trunk, glutes.</li>
+          <li>Run consistency second: weekly frequency and long-run progression.</li>
+          <li>Aerobic support third: bike and swim without run compromise.</li>
+          <li>Strength always: full-body work adjusted around back tolerance.</li>
+        </ol>
+      </div>
+      <div class="note">
+        <h3>Weekly Question</h3>
+        <p><strong>Did this week make the next week easier to absorb, or did it create debt?</strong></p>
+        <p>If it created debt, do not scale.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Plan B Volume Path</h2>
+    <p>Plan B reaches 60 km/week by week 8, then moves toward 80 km/week only when recovery allows.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Dates</th>
+          <th>Target Km</th>
+          <th>Long Run Guide</th>
+          <th>Weekly Read</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Jun 22-Jun 28</td><td>35</td><td>14-15 km</td><td>Establish rhythm.</td></tr>
+        <tr><td>2</td><td>Jun 29-Jul 5</td><td>39</td><td>15-16 km</td><td>Add only if week 1 felt easy.</td></tr>
+        <tr><td>3</td><td>Jul 6-Jul 12</td><td>43</td><td>17 km</td><td>Keep intensity light.</td></tr>
+        <tr><td>4</td><td>Jul 13-Jul 19</td><td>47</td><td>18 km</td><td>First durability check.</td></tr>
+        <tr><td>5</td><td>Jul 20-Jul 26</td><td>51</td><td>20 km</td><td>Move toward 5 runs/week.</td></tr>
+        <tr><td>6</td><td>Jul 27-Aug 2</td><td>55</td><td>22 km</td><td>Add frequency before pace.</td></tr>
+        <tr><td>7</td><td>Aug 3-Aug 9</td><td>58</td><td>23-24 km</td><td>Should feel controlled.</td></tr>
+        <tr><td>8</td><td>Aug 10-Aug 16</td><td>60</td><td>24-26 km</td><td>60 km baseline established.</td></tr>
+        <tr><td>9</td><td>Aug 17-Aug 23</td><td>64</td><td>24-26 km</td><td>Scale only if 60 felt repeatable.</td></tr>
+        <tr><td>10</td><td>Aug 24-Aug 30</td><td>68</td><td>26-28 km</td><td>Keep quality minimal.</td></tr>
+        <tr><td>11</td><td>Aug 31-Sep 6</td><td>72</td><td>28-30 km</td><td>First 70+ km test.</td></tr>
+        <tr><td>12</td><td>Sep 7-Sep 13</td><td>76</td><td>30 km</td><td>Proceed only if week 11 recovery is clean.</td></tr>
+        <tr><td>13</td><td>Sep 14-Sep 20</td><td>64</td><td>22-24 km</td><td>Absorb.</td></tr>
+        <tr><td>14</td><td>Sep 21-Sep 27</td><td>80</td><td>30-32 km</td><td>Hennur is not a KC target.</td></tr>
+        <tr><td>15</td><td>Sep 28-Oct 4</td><td>78</td><td>24-28 km</td><td>Indrahar only as easy hike-run if done.</td></tr>
+        <tr><td>16</td><td>Oct 5-Oct 11</td><td>80</td><td>30-32 km</td><td>Specific endurance block.</td></tr>
+        <tr><td>17</td><td>Oct 12-Oct 18</td><td>70</td><td>VDHM controlled</td><td>Checkpoint, not peak race.</td></tr>
+        <tr><td>18</td><td>Oct 19-Oct 25</td><td>82</td><td>32-34 km</td><td>Strong week if VDHM recovery is clean.</td></tr>
+        <tr><td>19</td><td>Oct 26-Nov 1</td><td>80</td><td>30-32 km</td><td>Goa swim should not add run fatigue.</td></tr>
+        <tr><td>20</td><td>Nov 2-Nov 8</td><td>72</td><td>24-26 km</td><td>Absorb before final push.</td></tr>
+        <tr><td>21</td><td>Nov 9-Nov 15</td><td>84</td><td>34-36 km</td><td>Peak week. Desert fueling practice.</td></tr>
+        <tr><td>22</td><td>Nov 16-Nov 22</td><td>76</td><td>30 km + 10-12 km next day</td><td>Back-to-back durability.</td></tr>
+        <tr><td>23</td><td>Nov 23-Nov 29</td><td>55</td><td>18-22 km</td><td>Taper.</td></tr>
+        <tr><td>24</td><td>Nov 30-Dec 6</td><td>62</td><td>Jaisalmer 50K</td><td>Race week.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Weekly Build Formula</h2>
+    <div class="grid cols-3">
+      <div class="status">
+        <h3 class="good">1. Score The Current Week</h3>
+        <p>Back/hip, long-run recovery, easy-run feel, strength response, and life load get a green/yellow/red status.</p>
+      </div>
+      <div class="status">
+        <h3 class="warn">2. Choose The Next Week</h3>
+        <p>All green moves forward. One yellow repeats or trims. Two yellows hold. Any red cuts volume 15-25%.</p>
+      </div>
+      <div class="status">
+        <h3 class="bad">3. Add Workouts Later</h3>
+        <p>Before 60 km, the only regular quality is strides. Threshold is earned, not assumed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Strength Philosophy</h2>
+    <div class="two-col">
+      <div class="note">
+        <h3>Session Structure</h3>
+        <ol>
+          <li>Prep: mobility + activation</li>
+          <li>Power primer: light jumps, skips, hops, or strides</li>
+          <li>Main lower-body pattern</li>
+          <li>Upper push / upper pull</li>
+          <li>Accessory / trunk</li>
+          <li>Exit check: back and hips should not feel worse</li>
+        </ol>
+      </div>
+      <div class="note">
+        <h3>Early Block Bias</h3>
+        <ul>
+          <li>Split squats, step-ups, hip thrusts, goblet squats, chest-supported rows, cable rows, pull-ups, presses, carries, dead bugs, side planks, and bird dogs.</li>
+          <li>Avoid heavy bent-over rows and heavy deadlifts until the back is stable.</li>
+          <li>Keep hinge work light and controlled at first.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>First 4-Week Strength Block</h2>
+    <p>Use two full-body strength sessions per week. Keep 2-3 reps in reserve. Nothing should be a grinder.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Progression</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Learn positions. Conservative load. Stop every set with clean reps left.</td></tr>
+        <tr><td>2</td><td>Add 1-2 reps per set or a small load increase if back is quiet.</td></tr>
+        <tr><td>3</td><td>Add load modestly on main patterns. Keep rows supported.</td></tr>
+        <tr><td>4</td><td>Deload 20-30% or keep load but reduce one set per movement.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Bike And Swim Role</h2>
+    <div class="grid cols-2">
+      <div class="note">
+        <h3>Bike</h3>
+        <p>Use bike for aerobic volume when legs need lower impact. Avoid long bike sessions that provoke lower-back soreness.</p>
+      </div>
+      <div class="note">
+        <h3>Swim</h3>
+        <p>Swim stays in the mix Monday evening through Friday morning and becomes more important as Goa approaches.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Race-Specific Priorities</h2>
+    <ul>
+      <li>Keep most running easy.</li>
+      <li>Practice fueling every 30-35 minutes on long runs.</li>
+      <li>Practice salt and fluid intake in heat.</li>
+      <li>Use back-to-back durability only once 70-80 km weeks are normal.</li>
+      <li>Jaisalmer is qualification first: 5:50-5:59 is the execution window.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Red Flags</h2>
+    <ul>
+      <li>Back/hip pain changes gait.</li>
+      <li>Long-run soreness lasts beyond 48 hours.</li>
+      <li>Easy runs feel like moderate runs for more than two days.</li>
+      <li>Strength work creates next-day back symptoms.</li>
+      <li>A planned 80 km week requires squeezing runs into bad recovery windows.</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
