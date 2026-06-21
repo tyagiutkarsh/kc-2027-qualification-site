@@ -157,6 +157,53 @@
       column-gap: 28px;
       font-size: 14px;
     }
+    .volume-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .legend-key {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .legend-key::before {
+      content: "";
+      width: 22px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+    .legend-key.plan-b-key::before { background: #2563eb; }
+    .legend-key.plan-c-key::before { background: #b45309; }
+    .volume-table td:nth-child(3),
+    .volume-table td:nth-child(4),
+    .volume-table td:nth-child(5) { min-width: 150px; }
+    .km {
+      display: inline-block;
+      min-width: 34px;
+      font-weight: 750;
+    }
+    .bar-track {
+      display: inline-block;
+      width: calc(100% - 42px);
+      height: 8px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      vertical-align: middle;
+      overflow: hidden;
+    }
+    .bar-fill {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+    }
+    .bar-fill.plan-b { background: #2563eb; }
+    .bar-fill.plan-c { background: #b45309; }
     .source-list li { break-inside: avoid; }
     @media (max-width: 850px) {
       main { width: min(100% - 20px, 1180px); padding-top: 10px; }
@@ -720,6 +767,240 @@
       <li><strong>After the chosen 50K:</strong> protect the run build toward Tata Mumbai Marathon. Kolkata 25K should be controlled, especially if Border 50K is raced two weeks earlier.</li>
       <li><strong>17 Jan 2027:</strong> Tata Mumbai Marathon is the primary sub-5 full-marathon qualifier.</li>
     </ul>
+  </section>
+
+  <section>
+    <h2>Jaisalmer 50K Running Volume Options</h2>
+    <p>
+      All three options start from 35 km in the week of 22 Jun 2026 and reach 60 km by week 8. After that,
+      Plan A keeps the build near 60 km, Plan B ramps toward 80 km and holds, and Plan C uses bigger volume swings
+      with recovery weeks near 60 km and one peak at 100 km.
+    </p>
+    <div class="grid cols-3">
+      <div class="note">
+        <h3>Plan A: Hold 60</h3>
+        <p>Best if durability, back/hip tolerance, or life stress are the constraint. Average after week 8 is about 61 km/week.</p>
+      </div>
+      <div class="note">
+        <h3>Plan B: Build To 80</h3>
+        <p>Best default if 60 km becomes normal by August. Average after week 8 is about 73 km/week, with peak weeks around 80-84 km.</p>
+      </div>
+      <div class="note warning">
+        <h3>Plan C: Wave To 100</h3>
+        <p>Aggressive option only if recovery is clean. Average after week 8 is about 77 km/week, but it carries the highest injury cost.</p>
+      </div>
+    </div>
+    <div class="volume-legend">
+      <span class="legend-key">Plan A km</span>
+      <span class="legend-key plan-b-key">Plan B km</span>
+      <span class="legend-key plan-c-key">Plan C km</span>
+    </div>
+    <table class="volume-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Dates</th>
+          <th>Plan A</th>
+          <th>Plan B</th>
+          <th>Plan C</th>
+          <th>Focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Jun 22-Jun 28</td>
+          <td><span class="km">35</span><div class="bar-track"><span class="bar-fill plan-a" style="width:35%"></span></div></td>
+          <td><span class="km">35</span><div class="bar-track"><span class="bar-fill plan-b" style="width:35%"></span></div></td>
+          <td><span class="km">35</span><div class="bar-track"><span class="bar-fill plan-c" style="width:35%"></span></div></td>
+          <td>Ramp to 60</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jun 29-Jul 5</td>
+          <td><span class="km">39</span><div class="bar-track"><span class="bar-fill plan-a" style="width:39%"></span></div></td>
+          <td><span class="km">39</span><div class="bar-track"><span class="bar-fill plan-b" style="width:39%"></span></div></td>
+          <td><span class="km">39</span><div class="bar-track"><span class="bar-fill plan-c" style="width:39%"></span></div></td>
+          <td>Ramp to 60</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Jul 6-Jul 12</td>
+          <td><span class="km">43</span><div class="bar-track"><span class="bar-fill plan-a" style="width:43%"></span></div></td>
+          <td><span class="km">43</span><div class="bar-track"><span class="bar-fill plan-b" style="width:43%"></span></div></td>
+          <td><span class="km">43</span><div class="bar-track"><span class="bar-fill plan-c" style="width:43%"></span></div></td>
+          <td>Ramp to 60</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Jul 13-Jul 19</td>
+          <td><span class="km">47</span><div class="bar-track"><span class="bar-fill plan-a" style="width:47%"></span></div></td>
+          <td><span class="km">47</span><div class="bar-track"><span class="bar-fill plan-b" style="width:47%"></span></div></td>
+          <td><span class="km">47</span><div class="bar-track"><span class="bar-fill plan-c" style="width:47%"></span></div></td>
+          <td>Ramp to 60</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Jul 20-Jul 26</td>
+          <td><span class="km">51</span><div class="bar-track"><span class="bar-fill plan-a" style="width:51%"></span></div></td>
+          <td><span class="km">51</span><div class="bar-track"><span class="bar-fill plan-b" style="width:51%"></span></div></td>
+          <td><span class="km">51</span><div class="bar-track"><span class="bar-fill plan-c" style="width:51%"></span></div></td>
+          <td>Ramp to 60</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Jul 27-Aug 2</td>
+          <td><span class="km">55</span><div class="bar-track"><span class="bar-fill plan-a" style="width:55%"></span></div></td>
+          <td><span class="km">55</span><div class="bar-track"><span class="bar-fill plan-b" style="width:55%"></span></div></td>
+          <td><span class="km">55</span><div class="bar-track"><span class="bar-fill plan-c" style="width:55%"></span></div></td>
+          <td>Ramp to 60</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Aug 3-Aug 9</td>
+          <td><span class="km">58</span><div class="bar-track"><span class="bar-fill plan-a" style="width:58%"></span></div></td>
+          <td><span class="km">58</span><div class="bar-track"><span class="bar-fill plan-b" style="width:58%"></span></div></td>
+          <td><span class="km">58</span><div class="bar-track"><span class="bar-fill plan-c" style="width:58%"></span></div></td>
+          <td>Ramp to 60</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Aug 10-Aug 16</td>
+          <td><span class="km">60</span><div class="bar-track"><span class="bar-fill plan-a" style="width:60%"></span></div></td>
+          <td><span class="km">60</span><div class="bar-track"><span class="bar-fill plan-b" style="width:60%"></span></div></td>
+          <td><span class="km">60</span><div class="bar-track"><span class="bar-fill plan-c" style="width:60%"></span></div></td>
+          <td>Ramp to 60</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Aug 17-Aug 23</td>
+          <td><span class="km">56</span><div class="bar-track"><span class="bar-fill plan-a" style="width:56%"></span></div></td>
+          <td><span class="km">64</span><div class="bar-track"><span class="bar-fill plan-b" style="width:64%"></span></div></td>
+          <td><span class="km">68</span><div class="bar-track"><span class="bar-fill plan-c" style="width:68%"></span></div></td>
+          <td>Cutback / absorb</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Aug 24-Aug 30</td>
+          <td><span class="km">62</span><div class="bar-track"><span class="bar-fill plan-a" style="width:62%"></span></div></td>
+          <td><span class="km">68</span><div class="bar-track"><span class="bar-fill plan-b" style="width:68%"></span></div></td>
+          <td><span class="km">76</span><div class="bar-track"><span class="bar-fill plan-c" style="width:76%"></span></div></td>
+          <td>Build / specific</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Aug 31-Sep 6</td>
+          <td><span class="km">64</span><div class="bar-track"><span class="bar-fill plan-a" style="width:64%"></span></div></td>
+          <td><span class="km">72</span><div class="bar-track"><span class="bar-fill plan-b" style="width:72%"></span></div></td>
+          <td><span class="km">84</span><div class="bar-track"><span class="bar-fill plan-c" style="width:84%"></span></div></td>
+          <td>Build / specific</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Sep 7-Sep 13</td>
+          <td><span class="km">60</span><div class="bar-track"><span class="bar-fill plan-a" style="width:60%"></span></div></td>
+          <td><span class="km">76</span><div class="bar-track"><span class="bar-fill plan-b" style="width:76%"></span></div></td>
+          <td><span class="km">60</span><div class="bar-track"><span class="bar-fill plan-c" style="width:60%"></span></div></td>
+          <td>Cutback / absorb</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>Sep 14-Sep 20</td>
+          <td><span class="km">58</span><div class="bar-track"><span class="bar-fill plan-a" style="width:58%"></span></div></td>
+          <td><span class="km">64</span><div class="bar-track"><span class="bar-fill plan-b" style="width:64%"></span></div></td>
+          <td><span class="km">90</span><div class="bar-track"><span class="bar-fill plan-c" style="width:90%"></span></div></td>
+          <td>Cutback / absorb</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>Sep 21-Sep 27</td>
+          <td><span class="km">64</span><div class="bar-track"><span class="bar-fill plan-a" style="width:64%"></span></div></td>
+          <td><span class="km">80</span><div class="bar-track"><span class="bar-fill plan-b" style="width:80%"></span></div></td>
+          <td><span class="km">96</span><div class="bar-track"><span class="bar-fill plan-c" style="width:96%"></span></div></td>
+          <td>Build / specific</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>Sep 28-Oct 4</td>
+          <td><span class="km">60</span><div class="bar-track"><span class="bar-fill plan-a" style="width:60%"></span></div></td>
+          <td><span class="km">78</span><div class="bar-track"><span class="bar-fill plan-b" style="width:78%"></span></div></td>
+          <td><span class="km">62</span><div class="bar-track"><span class="bar-fill plan-c" style="width:62%"></span></div></td>
+          <td>Cutback / absorb</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>Oct 5-Oct 11</td>
+          <td><span class="km">62</span><div class="bar-track"><span class="bar-fill plan-a" style="width:62%"></span></div></td>
+          <td><span class="km">80</span><div class="bar-track"><span class="bar-fill plan-b" style="width:80%"></span></div></td>
+          <td><span class="km">78</span><div class="bar-track"><span class="bar-fill plan-c" style="width:78%"></span></div></td>
+          <td>Build / specific</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td>Oct 12-Oct 18</td>
+          <td><span class="km">58</span><div class="bar-track"><span class="bar-fill plan-a" style="width:58%"></span></div></td>
+          <td><span class="km">70</span><div class="bar-track"><span class="bar-fill plan-b" style="width:70%"></span></div></td>
+          <td><span class="km">70</span><div class="bar-track"><span class="bar-fill plan-c" style="width:70%"></span></div></td>
+          <td>Cutback / absorb</td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td>Oct 19-Oct 25</td>
+          <td><span class="km">64</span><div class="bar-track"><span class="bar-fill plan-a" style="width:64%"></span></div></td>
+          <td><span class="km">82</span><div class="bar-track"><span class="bar-fill plan-b" style="width:82%"></span></div></td>
+          <td><span class="km">92</span><div class="bar-track"><span class="bar-fill plan-c" style="width:92%"></span></div></td>
+          <td>Build / specific</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td>Oct 26-Nov 1</td>
+          <td><span class="km">66</span><div class="bar-track"><span class="bar-fill plan-a" style="width:66%"></span></div></td>
+          <td><span class="km">80</span><div class="bar-track"><span class="bar-fill plan-b" style="width:80%"></span></div></td>
+          <td><span class="km">100</span><div class="bar-track"><span class="bar-fill plan-c" style="width:100%"></span></div></td>
+          <td>Build / specific</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td>Nov 2-Nov 8</td>
+          <td><span class="km">60</span><div class="bar-track"><span class="bar-fill plan-a" style="width:60%"></span></div></td>
+          <td><span class="km">72</span><div class="bar-track"><span class="bar-fill plan-b" style="width:72%"></span></div></td>
+          <td><span class="km">65</span><div class="bar-track"><span class="bar-fill plan-c" style="width:65%"></span></div></td>
+          <td>Cutback / absorb</td>
+        </tr>
+        <tr>
+          <td>21</td>
+          <td>Nov 9-Nov 15</td>
+          <td><span class="km">68</span><div class="bar-track"><span class="bar-fill plan-a" style="width:68%"></span></div></td>
+          <td><span class="km">84</span><div class="bar-track"><span class="bar-fill plan-b" style="width:84%"></span></div></td>
+          <td><span class="km">92</span><div class="bar-track"><span class="bar-fill plan-c" style="width:92%"></span></div></td>
+          <td>Build / specific</td>
+        </tr>
+        <tr>
+          <td>22</td>
+          <td>Nov 16-Nov 22</td>
+          <td><span class="km">62</span><div class="bar-track"><span class="bar-fill plan-a" style="width:62%"></span></div></td>
+          <td><span class="km">76</span><div class="bar-track"><span class="bar-fill plan-b" style="width:76%"></span></div></td>
+          <td><span class="km">80</span><div class="bar-track"><span class="bar-fill plan-c" style="width:80%"></span></div></td>
+          <td>Build / specific</td>
+        </tr>
+        <tr>
+          <td>23</td>
+          <td>Nov 23-Nov 29</td>
+          <td><span class="km">50</span><div class="bar-track"><span class="bar-fill plan-a" style="width:50%"></span></div></td>
+          <td><span class="km">55</span><div class="bar-track"><span class="bar-fill plan-b" style="width:55%"></span></div></td>
+          <td><span class="km">55</span><div class="bar-track"><span class="bar-fill plan-c" style="width:55%"></span></div></td>
+          <td>Cutback / absorb</td>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td>Nov 30-Dec 6</td>
+          <td><span class="km">62</span><div class="bar-track"><span class="bar-fill plan-a" style="width:62%"></span></div></td>
+          <td><span class="km">62</span><div class="bar-track"><span class="bar-fill plan-b" style="width:62%"></span></div></td>
+          <td><span class="km">62</span><div class="bar-track"><span class="bar-fill plan-c" style="width:62%"></span></div></td>
+          <td>Race week</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section>
