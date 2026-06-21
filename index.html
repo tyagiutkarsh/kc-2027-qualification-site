@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KC 2027 Qualifying Race Options</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f766e'/%3E%3Cpath d='M8 44 25 18l8 12 6-8 17 22H8Z' fill='%23ffffff'/%3E%3Cpath d='M25 18l8 12-5-2-4 5-4-4-12 15h48L39 22l-6 8-8-12Z' fill='%23d1fae5'/%3E%3Ctext x='32' y='56' font-family='Arial,sans-serif' font-size='14' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EKC%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5d6a76;
+      --line: #d9e0e7;
+      --panel: #f6f8fa;
+      --paper: #ffffff;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --bad: #b91c1c;
+      --good: #047857;
+      --warn: #92400e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: var(--ink);
+      background: #edf1f5;
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    header {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 26px;
+      margin-bottom: 18px;
+    }
+    h1, h2, h3 { line-height: 1.2; margin: 0; }
+    h1 { font-size: clamp(28px, 4vw, 44px); letter-spacing: 0; }
+    h2 { font-size: 24px; margin-bottom: 12px; }
+    h3 { font-size: 18px; margin-bottom: 8px; }
+    p { margin: 8px 0 0; }
+    a { color: #075985; }
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      margin-top: 18px;
+    }
+    .lede {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 12px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .note, .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+    }
+    .card h3 { color: var(--accent); }
+    .note strong { color: var(--ink); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #e9eef3;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #334155;
+    }
+    td small {
+      color: var(--muted);
+      display: block;
+      margin-top: 3px;
+    }
+    .rank {
+      font-weight: 750;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .score {
+      display: inline-block;
+      min-width: 82px;
+      font-weight: 700;
+    }
+    .easy { color: var(--good); }
+    .medium { color: var(--warn); }
+    .hard { color: var(--bad); }
+    .timeline {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 10px 16px;
+      margin-top: 12px;
+    }
+    .date {
+      font-weight: 750;
+      color: #334155;
+    }
+    .step {
+      border-left: 3px solid var(--accent);
+      padding: 0 0 14px 14px;
+    }
+    .step:last-child { padding-bottom: 0; }
+    ul { margin: 10px 0 0 20px; padding: 0; }
+    li { margin: 5px 0; }
+    .decision {
+      border-left: 4px solid var(--accent-2);
+      background: #fff7ed;
+    }
+    .warning {
+      border-left: 4px solid var(--bad);
+      background: #fff5f5;
+    }
+    .source-list {
+      columns: 2;
+      column-gap: 28px;
+      font-size: 14px;
+    }
+    .source-list li { break-inside: avoid; }
+    @media (max-width: 850px) {
+      main { width: min(100% - 20px, 1180px); padding-top: 10px; }
+      header, section { padding: 16px; }
+      .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
+      .step { border-left: 0; border-top: 3px solid var(--accent); padding: 10px 0 12px; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+      td { white-space: normal; min-width: 180px; }
+      .source-list { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Khardung La Challenge 2027 Qualification Options</h1>
+    <p class="lede">
+      Race-plan comparison for completing both required qualifying results before the user-supplied deadline of
+      <strong>1 March 2027</strong>: a full marathon under 5:00 and a 50 km ultra under 6:00. The ranking optimizes for the
+      easiest qualifying target, with altitude, road/trail surface, and elevation gain treated as the main difficulty filters.
+    </p>
+    <div class="meta">
+      <span class="pill">Last researched: 5 June 2026</span>
+      <span class="pill">Scope: India-wide</span>
+      <span class="pill">Budget: no constraint</span>
+      <span class="pill">Current status: restarting, 20 km/week, easy pace around 8:00/km</span>
+      <span class="pill">Existing timed result: VDHM 2025 half marathon, 1:59:40</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Bottom Line</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>Recommended Path</h3>
+        <p><strong>Hennur Bamboo Ultra 50K</strong> as the first-choice 50K qualifier, evaluated by mid-August, else <strong>Border 50K Jaisalmer</strong>. Then <strong>Tata Mumbai Marathon</strong> on 17 Jan 2027 for the 42K qualifier.</p>
+        <p>This locks the qualification sequence around one 50K attempt in 2026 plus one road marathon attempt in January 2027.</p>
+      </div>
+      <div class="card">
+        <h3>Why Not Trail First</h3>
+        <p>A sub-6 50K requires 7:12/km average. That is close to the sub-5 marathon pace of 7:06/km, but over a longer distance. Forest trails, hills, mud, and navigation make that target much harder.</p>
+      </div>
+      <div class="card">
+        <h3>Key Risk</h3>
+        <p>The 50K decision must be made early. Hennur is more controlled but comes sooner; Border gives more build time but adds desert exposure and certificate uncertainty. Mumbai then becomes the fixed marathon target.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Working Race Calendar</h2>
+    <p>
+      This is the current calendar to plan around. The key constraint is sequencing: only one 50K attempt should be treated
+      as the serious KC qualifier in 2026, and the January marathon must not be compromised by excess December fatigue.
+      Pace targets below are the ideal-case version assuming training, recovery, and back/hip tolerance all progress well;
+      revise them as checkpoints arrive.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Race</th>
+          <th>Status</th>
+          <th>Role In KC Plan</th>
+          <th>Pace / Time Target</th>
+          <th>Planning Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>16 Aug 2026</td>
+          <td><strong>Chandigarh Lake To Lake Ultra 30K</strong></td>
+          <td><span class="score medium">Maybe</span></td>
+          <td>Supported long-run / hill-strength rehearsal, not a qualifier.</td>
+          <td><strong>Ideal: 3:45-4:00</strong><small>Still controlled. Green-light signal: finish with another 10-12 km left, no back flare-up, recovery in 3-4 days.</small></td>
+          <td>Useful only if it does not compromise the Hennur decision. Treat as controlled climbing practice in monsoon conditions, not a race effort.</td>
+        </tr>
+        <tr>
+          <td>26 Sep 2026</td>
+          <td><strong>Hennur Bamboo Ultra 50K</strong></td>
+          <td><span class="score medium">Maybe</span></td>
+          <td>Potential 50K qualifier.</td>
+          <td><strong>Ideal: 5:45-5:55</strong><small>KC floor is sub-6:00. Required average for 6:00 is 7:12/km including aid; ideal range is roughly 6:54-7:06/km total average.</small></td>
+          <td>Use only if sub-6 looks realistic by mid-August and Ladakh confirms timing certificate acceptance. If this is done seriously, skip Border 50K.</td>
+        </tr>
+        <tr>
+          <td>3 Oct 2026</td>
+          <td><strong>Indrahar Run 20K</strong></td>
+          <td><span class="score medium">Wanted / fun</span></td>
+          <td>Hill-fitness and travel race, not a qualifier.</td>
+          <td><strong>Ideal: controlled finish</strong><small>RPE 5-6 cap. If Hennur was raced, no time target. If Hennur is skipped and legs are fresh, reassess closer to race week.</small></td>
+          <td>High recovery cost and only 15 days before VDHM. If Hennur is raced seriously, Indrahar should become a hike-run or be skipped.</td>
+        </tr>
+        <tr>
+          <td>18 Oct 2026</td>
+          <td><strong>VDHM 21K</strong></td>
+          <td><span class="score easy">Planned</span></td>
+          <td>Fitness checkpoint and road-running benchmark.</td>
+          <td><strong>Ideal: 1:45-1:50</strong><small>1:45 needs 4:59/km. Only chase if training supports it and Hennur/Indrahar recovery is clean.</small></td>
+          <td>Useful to judge whether the January sub-5 marathon build is on track.</td>
+        </tr>
+        <tr>
+          <td>1 Nov 2026</td>
+          <td><strong>Goa Ironman 70.3 Relay - Swim</strong></td>
+          <td><span class="score easy">Planned</span></td>
+          <td>Triathlon/swim goal, not a KC qualifier.</td>
+          <td><strong>Ideal: 38-42 min swim</strong><small>Target around prior 70.3 swim fitness if rebuilt; avoid carrying fatigue into run block.</small></td>
+          <td>Keep swim sharp without letting open-water prep disrupt the run build.</td>
+        </tr>
+        <tr>
+          <td>6 Dec 2026</td>
+          <td><strong>Border 50K, Jaisalmer</strong></td>
+          <td><span class="score medium">Maybe</span></td>
+          <td>Alternate 50K qualifier if Hennur is skipped.</td>
+          <td><strong>Ideal: 5:45-5:55</strong><small>KC floor is sub-6:00. Desert conditions mean effort control matters more than GPS pace early.</small></td>
+          <td>Either-or with Hennur. Choose only after confirming official timing, route, support, and Ladakh acceptance. Leave enough recovery for Kolkata 25K and Mumbai full.</td>
+        </tr>
+        <tr>
+          <td>20 Dec 2026</td>
+          <td><strong>Kolkata Tata Steel 25K</strong></td>
+          <td><span class="score easy">Planned</span></td>
+          <td>Road fitness checkpoint before Mumbai.</td>
+          <td><strong>Ideal: 2:05-2:15</strong><small>About 5:00-5:24/km. Race only if Border was skipped or recovery is excellent; otherwise run controlled.</small></td>
+          <td>Should be controlled if Border 50K is raced two weeks earlier. It should support the Mumbai build, not become an all-out peak.</td>
+        </tr>
+        <tr>
+          <td>17 Jan 2027</td>
+          <td><strong>Tata Mumbai Marathon</strong></td>
+          <td><span class="score easy">Planned</span></td>
+          <td>Primary full-marathon qualifier.</td>
+          <td><strong>Ideal: 4:30-4:45</strong><small>KC floor is sub-5:00. Required average for 5:00 is 7:06/km; ideal range is roughly 6:24-6:45/km.</small></td>
+          <td>Target sub-5. This is the main road-marathon result for KC unless another official sub-5 marathon is completed earlier.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Qualification Rules Used</h2>
+    <div class="grid cols-2">
+      <div class="note">
+        <h3>Required Results</h3>
+        <ul>
+          <li><strong>Full marathon:</strong> official 42.195 km finish under 5:00:00.</li>
+          <li><strong>50K ultra:</strong> official 50 km finish under 6:00:00.</li>
+          <li><strong>Target paces:</strong> 7:06/km for the marathon and 7:12/km for the 50K.</li>
+          <li><strong>Deadline:</strong> before 1 March 2027, per <code>goal.md</code>.</li>
+        </ul>
+      </div>
+      <div class="note warning">
+        <h3>Do Not Rely On These</h3>
+        <ul>
+          <li>Stadium races, 24-hour races, virtual races, and personal Garmin/Strava efforts should not be used.</li>
+          <li>Self-timed or self-supported races are administrative risks unless Ladakh Marathon confirms acceptance in writing.</li>
+          <li>Unofficial race calendars are useful for discovery, but registration should be done only after checking the organiser page.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Race Entry Eligibility</h2>
+    <p>
+      This section is separate from KC qualification. It covers whether you can enter the races in the plan, including
+      Procam/TCS ecosystem races such as TCS World 10K and Tata Mumbai Marathon.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Race / Role</th>
+          <th>Current Entry Criteria Found</th>
+          <th>Your Status</th>
+          <th>Planning Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Khardung La Challenge 2027</strong><small>Final objective</small></td>
+          <td>Use both official results: full marathon under 5:00 and 50K under 6:00. Stadium, 24-hour, virtual, personal-timing, and self-timed/self-supported results should not be relied on.</td>
+          <td><span class="score hard">Not complete</span> VDHM 2025 is useful background, but KC needs the full marathon and 50K results.</td>
+          <td>Every path must produce two acceptable certificates before 1 Mar 2027.</td>
+        </tr>
+        <tr>
+          <td><strong>Hennur Bamboo Ultra 50K</strong><small>Primary 50K qualifier</small></td>
+          <td>Use only if the race provides official timing/certificate and Ladakh confirms acceptance. The race format is more controlled than desert/mountain ultras, but still a trail/forest 50K.</td>
+          <td><span class="score medium">Evaluate by mid-August</span> Proceed only if sub-6 looks realistic from training and back/hip status.</td>
+          <td>Primary 50K target. If this is not green by mid-August, shift to Border 50K Jaisalmer as the fallback.</td>
+        </tr>
+        <tr>
+          <td><strong>Tata Ultra 50K</strong><small>Contingency 50K option</small></td>
+          <td>2026 rules: age 18+; 50K entry requires a full marathon completed within 6:00; certificate must be within 18 months of race day; headlight mandatory; race finish cutoff is 8 hours.</td>
+          <td><span class="score hard">Not primary now</span> Useful only if Hennur/Border fail or are rejected and a qualifying marathon result is available before entry.</td>
+          <td>Keep as a secondary option if a 2027 edition is announced before the evidence deadline.</td>
+        </tr>
+        <tr>
+          <td><strong>Tata Mumbai Marathon full marathon</strong><small>Primary 42K qualifier</small></td>
+          <td>2026 marathon confirmation accepted timed on-ground marathon, 25K, or half marathon certificates. Listed cutoffs: marathon under 7:00 for men/women; 25K under 3:18 men / 3:35 women; half marathon under 2:45 men / 3:00 women. Certificate event must meet Procam timing and measurement standards and be within 18 months of race day.</td>
+          <td><span class="score easy">Eligible on time</span> VDHM 2025 half marathon in 1:59:40 clears the 2026 male and female HM timing thresholds, subject to 2027 rules and certificate acceptance.</td>
+          <td>TMM is now the primary sub-5 marathon target if registration is secured and the 50K attempt does not compromise January recovery.</td>
+        </tr>
+        <tr>
+          <td><strong>Cognizant New Delhi Marathon full marathon</strong><small>Late FM fallback</small></td>
+          <td>2026 rules page lists age 18+ for 42K/21K, individual entries, non-transferable bibs, chip timing, and no official certificate if timing bib is tampered with. The 2027 entry details were not released at research time.</td>
+          <td><span class="score easy">Likely eligible</span> No prior timing criterion was found for 42K, but final 2027 rules must be checked once the site is active.</td>
+          <td>Good low-altitude fallback only if the 50K is already secured or Tata Ultra 2027 is not on the same weekend.</td>
+        </tr>
+        <tr>
+          <td><strong>SKF Goa River Marathon full marathon</strong><small>Former FM option</small></td>
+          <td>Registration/rules pages emphasize completed application, fee, bib/chip timing, and official timing/certificates for timed races. A six-hour marathon cutoff is listed in the FAQ source checked.</td>
+          <td><span class="score easy">Likely eligible</span> No stricter prior timing criterion was found for the full marathon.</td>
+          <td>No longer part of the primary calendar. Keep only as a fallback if Mumbai becomes unavailable.</td>
+        </tr>
+        <tr>
+          <td><strong>Vedanta Delhi Half Marathon 2026</strong><small>Intermediary checkpoint</small></td>
+          <td>2026 official criteria were not released in the sources found. 2025 reference criteria required a timed marathon 7:18 or faster, 25K 4:11 or faster, HM 3:30 or faster, or 10K 1:35 or faster for HM entry.</td>
+          <td><span class="score easy">Likely eligible</span> VDHM 2025 in 1:59:40 is well inside the prior HM criterion, assuming similar 2026 rules and certificate acceptance.</td>
+          <td>Use VDHM as a fitness checkpoint, not as a KC qualifier.</td>
+        </tr>
+        <tr>
+          <td><strong>TCS World 10K Bengaluru</strong><small>Procam/TCS ecosystem race</small></td>
+          <td>2026 Open 10K required a valid timing certificate: marathon 6:54 or faster, 25K 3:58 or faster, half marathon 3:18:35 or faster, 10K 1:30 or faster, or 5K 45:00 or faster. Results/certificates are generated only for Open 10K finishers within 1:30.</td>
+          <td><span class="score easy">Eligible on time</span> VDHM 2025 in 1:59:40 clears the HM threshold.</td>
+          <td>Not needed for KC. It is useful only if you want a lighter TCS/Procam event or future Procam registration history.</td>
+        </tr>
+        <tr>
+          <td><strong>Chandigarh Fast Marathon 2027</strong><small>Fast-course FM alternate</small></td>
+          <td>Current site says entry is strictly by qualification from the prior 18 months. Listed thresholds: marathon 4:00 male / 4:30 female, half marathon 1:55 male / 2:10 female, or 10K 54 min male / 59 min female. It also notes a 10K certificate only allows half-marathon registration.</td>
+          <td><span class="score medium">Conditional</span> VDHM 2025 in 1:59:40 clears the listed female HM threshold but not the listed male HM threshold. A male entry likely needs a faster HM/10K or a qualifying marathon first.</td>
+          <td>Probably the fastest full-marathon course, but not the easiest administrative path unless your category qualifies or you add a faster intermediary race.</td>
+        </tr>
+        <tr>
+          <td><strong>AU Jaipur Marathon 2027</strong><small>Fast-course FM alternate</small></td>
+          <td>2027 official details are not fully released. 2026 terms required age 18+ for marathon, payment/confirmation, possible medical certificate, bib collection before race day, chip timing, and official-route compliance. Race guides describe the course as AIMS-certified, flat, fast, and February-weather friendly.</td>
+          <td><span class="score easy">Likely eligible</span> No prior timing criterion was found for the marathon category in the checked official 2026 terms.</td>
+          <td>Excellent sub-5 fallback if it lands before 1 Mar 2027 and if the 50K is already done or safely scheduled.</td>
+        </tr>
+        <tr>
+          <td><strong>Jaipur Ultra 50K 2026</strong><small>50K alternate</small></td>
+          <td>Listing shows 1 Nov 2026, 50K and 25K categories, 8-hour 50K cutoff, Jal Mahal start, rural roads/desert stretches/village paths, mostly flat to mild rolling terrain, and aid stations every 7-10 km.</td>
+          <td><span class="score medium">Needs verification</span> Promising for sub-6, but organiser, timing certificate, route certification, and Ladakh acceptance should be confirmed before relying on it.</td>
+          <td>Secondary 50K backup if Hennur and Border are both rejected or impractical.</td>
+        </tr>
+        <tr>
+          <td><strong>The Border Ultra, Jaisalmer</strong><small>Fallback 50K qualifier</small></td>
+          <td>Recent result listings show a Jaisalmer 50K event in Dec 2025. Historical Border/Tuffman desert ultra pages describe desert running, sand/gravel, sparse support, dry heat, cold night conditions, and 50K/longer categories.</td>
+          <td><span class="score hard">High uncertainty</span> Current 2026 50K date, registration rules, support format, and official certificate details were not strongly confirmed in the sources found.</td>
+          <td>Fallback if Hennur is skipped. Use only after confirming current official details and Ladakh acceptance.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Difficulty Model</h2>
+    <p>
+      The scoring below is not a prediction of finish time. It is a practical qualification-risk score for a runner restarting from low volume.
+      Lower is better.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Why It Matters</th>
+          <th>Easiest Version</th>
+          <th>Hard Version</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Altitude</td>
+          <td>Higher altitude increases perceived effort and recovery cost.</td>
+          <td>Sea level to low-altitude cities: Goa, Mumbai, Delhi.</td>
+          <td>Ladakh, Ooty, Shimla, Dehradun hill routes.</td>
+        </tr>
+        <tr>
+          <td>Terrain</td>
+          <td>Road running is easier to pace at 7:06-7:12/km than trail, forest, sand, rocks, or self-navigation.</td>
+          <td>Certified road course with aid stations and chip timing.</td>
+          <td>Forest loop, trail, technical descent, self-supported race.</td>
+        </tr>
+        <tr>
+          <td>Elevation gain</td>
+          <td>Every climb costs pace; every descent adds quad damage, especially in an ultra.</td>
+          <td>Flat or rolling under roughly 200 m gain for marathon; lower gain for 50K.</td>
+          <td>50K routes with 900 m to 1,700 m+ gain.</td>
+        </tr>
+        <tr>
+          <td>Calendar fit</td>
+          <td>The event must leave enough training time and recovery between qualifiers.</td>
+          <td>Marathon in Dec/Jan, 50K in Feb.</td>
+          <td>50K in July/Sep 2026 while restarting from 20 km/week.</td>
+        </tr>
+        <tr>
+          <td>Admin reliability</td>
+          <td>The certificate must be acceptable to Ladakh Marathon.</td>
+          <td>Established organiser, chip timing, published results, road race.</td>
+          <td>Self-timed/self-supported, unclear result publication, ambiguous distance.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Recommended Race Plan</h2>
+    <div class="timeline">
+      <div class="date">Jun-Aug 2026</div>
+      <div class="step">
+        <strong>Build toward the mid-August Hennur decision.</strong>
+        <p>By mid-August, decide whether sub-6 at Hennur is realistic based on pain-free volume, long-run durability, and whether Ladakh confirms the certificate will be accepted.</p>
+      </div>
+      <div class="date">26 Sep 2026</div>
+      <div class="step">
+        <strong>Primary 50K qualifier attempt: Hennur Bamboo Ultra 50K.</strong>
+        <p>Target sub-6 only if the mid-August check is green. If Hennur is not attempted as a qualifier, switch the 50K focus to Border 50K Jaisalmer.</p>
+      </div>
+      <div class="date">18 Oct 2026</div>
+      <div class="step">
+        <strong>Vedanta Delhi Half Marathon 2026 as intermediary race.</strong>
+        <p>This is not a KC qualifier, but it is the best checkpoint. A comfortable half marathon around 2:05-2:15 would support the December marathon build; a hard sub-2 is optional, not required.</p>
+      </div>
+      <div class="date">13 Dec 2026</div>
+      <div class="step">
+        <strong>Fallback 50K qualifier: Border 50K, Jaisalmer, if Hennur is skipped.</strong>
+        <p>Use this only if Hennur Bamboo 50K is not attempted as the qualifier and if Ladakh Marathon confirms the Border 50K certificate will be accepted. Desert exposure makes it less predictable than Hennur.</p>
+      </div>
+      <div class="date">Jan 2027</div>
+      <div class="step">
+        <strong>Primary marathon qualifier: Tata Mumbai Marathon, 17 Jan 2027.</strong>
+        <p>Target sub-5 for KC qualification. Jaipur and Chandigarh remain faster-course alternates only if Mumbai registration, health, or course-day execution becomes a problem.</p>
+      </div>
+      <div class="date">By 1 Mar 2027</div>
+      <div class="step">
+        <strong>Submit both certificates.</strong>
+        <p>Save result URLs, timing certificates, bib details, and any organiser confirmation that the race is accepted.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <h2>Complete Qualification Paths</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Path</th>
+          <th>Why It Ranks Here</th>
+          <th>Main Difficulty</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank">1</td>
+          <td><strong>Hennur Bamboo 50K 2026 + Tata Mumbai Marathon 2027</strong><small>Primary 50K attempt, then January road marathon.</small></td>
+          <td>Best aligned with the current calendar. Hennur is controlled enough to evaluate by mid-August, and Mumbai gives a clear road-marathon target after the 50K block.</td>
+          <td><span class="score medium">Medium-high</span> Hennur is flat but still trail/forest; sub-6 requires 7:12/km average and a strong build from current fitness.</td>
+          <td><strong>Primary recommendation.</strong></td>
+        </tr>
+        <tr>
+          <td class="rank">2</td>
+          <td><strong>Border 50K Jaisalmer 2026 + Tata Mumbai Marathon 2027</strong><small>Fallback 50K if Hennur is skipped, then January road marathon.</small></td>
+          <td>Gives more time to build for the 50K than Hennur, but adds desert exposure and stronger certificate-verification risk.</td>
+          <td><span class="score hard">Hard</span> Heat, wind, sand, and uncertainty make this less controlled than Hennur despite likely lower elevation.</td>
+          <td>Fallback if Hennur is not green by mid-August.</td>
+        </tr>
+        <tr>
+          <td class="rank">3</td>
+          <td><strong>Jaipur Ultra 50K 2026 + Tata Mumbai Marathon 2027</strong><small>Alternate 50K if Hennur/Border logistics fail.</small></td>
+          <td>Potentially runnable and before Mumbai, but not currently selected as the primary or named fallback.</td>
+          <td><span class="score medium">Medium-high</span> Needs organiser/timing/Ladakh acceptance verification.</td>
+          <td>Secondary backup only.</td>
+        </tr>
+        <tr>
+          <td class="rank">4</td>
+          <td><strong>Tata Ultra 50K 2027 + Tata Mumbai Marathon 2027</strong><small>Late contingency only if it fits before 1 Mar 2027.</small></td>
+          <td>Administratively clean if announced and if the marathon result satisfies entry rules, but it is no longer the core plan.</td>
+          <td><span class="score medium">Conditional</span> 2027 date and entry requirements must align with the evidence deadline.</td>
+          <td>Keep as contingency.</td>
+        </tr>
+        <tr>
+          <td class="rank">5</td>
+          <td><strong>Bangalore Ultra 50K 2026 + Tata Mumbai Marathon 2027</strong><small>Very early 50K, then January road marathon.</small></td>
+          <td>The course format looks friendly, but the July date is too soon from a 20 km/week restart.</td>
+          <td><span class="score hard">Very hard</span> Sub-6 50K in seven weeks is not a conservative plan.</td>
+          <td>Do not use as the main plan.</td>
+        </tr>
+        <tr>
+          <td class="rank">6</td>
+          <td><strong>Malnad/Ooty/Shimla 50K + Tata Mumbai Marathon 2027</strong><small>Hill or mountain 50K plus January road marathon.</small></td>
+          <td>These may build toughness, but they are poor choices for the easiest sub-6 50K target.</td>
+          <td><span class="score hard">Very hard</span> High elevation gain, altitude, and/or technical terrain.</td>
+          <td>Use for experience only after safer qualifiers are secured.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Marathon Options For Sub-5</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Race</th>
+          <th>Date Status</th>
+          <th>Altitude / Terrain / Elevation</th>
+          <th>Target Difficulty</th>
+          <th>Use In Plan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank">1</td>
+          <td><strong>SKF Goa River Marathon</strong></td>
+          <td>13 Dec 2026 published by official race site and listings.</td>
+          <td>Low altitude coastal road. AIMS-certified, paved course along the Zuari River. Rolling/humidity risk; exact gain should be checked from the final route.</td>
+          <td><span class="score medium">2.5/5</span> Best timing because it leaves February open for 50K.</td>
+          <td>Not in the current primary calendar. Could be used only if Mumbai becomes unavailable.</td>
+        </tr>
+        <tr>
+          <td class="rank">2</td>
+          <td><strong>AU Jaipur Marathon 2027</strong></td>
+          <td>2027 official date not fully released. Third-party listings and AIMS references point to late Jan or Feb 2027; 2026 edition was 1 Feb.</td>
+          <td>Low-altitude city road. Race guides describe AIMS-certified, flat and fast course with cool February weather; 2026 full marathon started at 3:00 AM.</td>
+          <td><span class="score easy">2/5</span> Potentially one of the easiest sub-5 courses if the 2027 date is before 1 Mar.</td>
+          <td>Fast-course fallback if Goa misses sub-5 or if the 50K is already secured.</td>
+        </tr>
+        <tr>
+          <td class="rank">3</td>
+          <td><strong>Chandigarh Fast Marathon 2027</strong></td>
+          <td>Registration opening soon on official site; date not shown in text captured, but eligibility window from 15 Aug 2025 implies a mid-Feb 2027 race if format repeats.</td>
+          <td>Chandigarh road course advertised as absolute flat, fast, supported, and cool-weather. World Athletics listing shows Under Armour Chandigarh Fast Marathon as a certified marathon through 2026.</td>
+          <td><span class="score easy">2/5 course</span> Fastest-course candidate, but entry qualification is the barrier.</td>
+          <td>Use only if entry eligibility is satisfied. Current VDHM 1:59:40 may not clear the listed male HM cutoff of 1:55.</td>
+        </tr>
+        <tr>
+          <td class="rank">4</td>
+          <td><strong>Cognizant New Delhi Marathon 2027</strong></td>
+          <td>2027 date not fully official at research time; third-party listings indicate Feb 2027. 2026 edition had a 6-hour full marathon cutoff.</td>
+          <td>Low altitude city road. Likely flat/cooler than most Indian marathons, but final route and date must be verified.</td>
+          <td><span class="score easy">2/5</span> Potentially easiest pure marathon target, but too late if 50K is also pending.</td>
+          <td>Use only if Mumbai becomes unavailable or a second marathon attempt is needed after the 50K is secured.</td>
+        </tr>
+        <tr>
+          <td class="rank">5</td>
+          <td><strong>Tata Mumbai Marathon 2027</strong></td>
+          <td>2027 not open at research time; event is traditionally in January. 2026 full marathon had a 7-hour amateur cutoff.</td>
+          <td>Sea-level road race with high event reliability. Humidity, crowding, bridges/flyovers and registration demand add risk.</td>
+          <td><span class="score medium">3/5</span> Strong fallback if Goa misses sub-5.</td>
+          <td>January backup marathon. VDHM 2025 should satisfy the prior-result timing layer if 2027 mirrors 2026 rules.</td>
+        </tr>
+        <tr>
+          <td class="rank">6</td>
+          <td><strong>Wipro Bengaluru Marathon 2026</strong></td>
+          <td>2026 race listed in September/October depending source; confirm official date before booking.</td>
+          <td>Road, but Bengaluru sits around 900 m altitude. Course is urban with gentle but persistent undulation.</td>
+          <td><span class="score hard">4/5</span> Too soon in the rebuild and not as flat as Delhi/Goa.</td>
+          <td>Possible long training event, not preferred qualifier.</td>
+        </tr>
+        <tr>
+          <td class="rank">7</td>
+          <td><strong>NMDC Hyderabad Marathon 2026</strong></td>
+          <td>30 Aug 2026 full marathon; 6:30 official cutoff.</td>
+          <td>Road, warm/humid season, known as a tougher city route with hills through Hyderabad.</td>
+          <td><span class="score hard">5/5</span> Too early and too hard for easiest-target optimization.</td>
+          <td>Avoid as qualifier.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>50K Options For Sub-6</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Race</th>
+          <th>Date Status</th>
+          <th>Altitude / Terrain / Elevation</th>
+          <th>Target Difficulty</th>
+          <th>Use In Plan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank">1</td>
+          <td><strong>Tata Ultra 50K, Lonavala</strong></td>
+          <td>2026 edition was 22 Feb 2026; 2027 not confirmed at research time.</td>
+          <td>Road 50K at moderate altitude around Lonavala. Official handbook shows an elevation chart around roughly 625-800 m; an unofficial route file reports about 2,988 ft / 911 m ascent-descent.</td>
+          <td><span class="score medium">3.5/5</span> Best target if available, but not flat. 2026 rules required a full marathon under 6 to enter the 50K.</td>
+          <td>Contingency only. Requires a full marathon under 6:00 before entry; Mumbai or another qualifying marathon would need to satisfy the entry window.</td>
+        </tr>
+        <tr>
+          <td class="rank">2</td>
+          <td><strong>Jaipur Ultra 50K 2026</strong></td>
+          <td>1 Nov 2026 listing shows 25K and 50K categories, 8-hour 50K cutoff, and Jal Mahal start.</td>
+          <td>Lower altitude than hill ultras. Listing describes rural roads, desert stretches, village paths, mostly flat to mild rolling terrain, and aid every 7-10 km.</td>
+          <td><span class="score medium">3.5/5</span> Best early 50K backup if organiser/timing details check out.</td>
+          <td>Strong watchlist backup. Verify official timing certificate, route, and Ladakh acceptance before registering as a qualifier.</td>
+        </tr>
+        <tr>
+          <td class="rank">3</td>
+          <td><strong>Hennur Bamboo Ultra 50K</strong></td>
+          <td>25-27 Sep 2026 event weekend; 50K listed for 26 Sep with 10-hour cutoff.</td>
+          <td>Bengaluru-area forest trail. Flat 10K loop, chip-timed, but forest surface still slows a sub-6 target.</td>
+          <td><span class="score hard">4/5</span> Manageable terrain for finishing, harder for 7:12/km average.</td>
+          <td>Backup if road 50K is unavailable.</td>
+        </tr>
+        <tr>
+          <td class="rank">4</td>
+          <td><strong>Bangalore Ultra 50K</strong></td>
+          <td>26 Jul 2026; official site lists 50K.</td>
+          <td>Bengaluru outskirts. RaceMart lists road/flat terrain, but Bengaluru altitude and monsoon timing add load.</td>
+          <td><span class="score hard">5/5</span> Course looks favorable, calendar does not.</td>
+          <td>Too soon for current restart.</td>
+        </tr>
+        <tr>
+          <td class="rank">5</td>
+          <td><strong>The Border Ultra, Jaisalmer 50K</strong></td>
+          <td>Recent result pages show a 50K at The Border Ultra, Jaisalmer on 6 Dec 2025; DUV calendar shows a 2026 Border 100 date, but current 2026 50K details were not strongly confirmed.</td>
+          <td>Low altitude desert route. Historical descriptions mention mostly road for longer Border Ultra formats, but also desert exposure, strong headwinds, dry heat, cold night conditions, and sand-dune sections. Older Tuffman Desert Ultra pages describe sand/gravel loops near Jaisalmer.</td>
+          <td><span class="score hard">4.5/5</span> Fast runners can run fast here, but it is not the easiest controlled sub-6 environment for a restart.</td>
+          <td>Watchlist only. Use only if the current 50K is official, chip-timed, well-supported, and accepted by Ladakh Marathon.</td>
+        </tr>
+        <tr>
+          <td class="rank">6</td>
+          <td><strong>Malnad Ultra 50K</strong></td>
+          <td>28 Nov 2026.</td>
+          <td>Trail through coffee estates; official info gives about 1,705 m net ascent/descent for 50K.</td>
+          <td><span class="score hard">5/5</span> Excellent KC-specific toughness, poor sub-6 qualifier.</td>
+          <td>Not for qualification target.</td>
+        </tr>
+        <tr>
+          <td class="rank">7</td>
+          <td><strong>OOTYULTRA 50K</strong></td>
+          <td>2026 category listed.</td>
+          <td>High-altitude hill course: highest point 2,637 m, elevation gain around 1,547 m.</td>
+          <td><span class="score hard">5/5</span> Altitude plus climbing makes sub-6 unrealistic for this objective.</td>
+          <td>Training experience only, not qualifier.</td>
+        </tr>
+        <tr>
+          <td class="rank">8</td>
+          <td><strong>CapitalTrails 51K / self-supported trails</strong></td>
+          <td>Event listings show 51K options in NCR/Haryana.</td>
+          <td>Trail and self-supported/self-navigated format. Even if distance fits, administrative acceptance is risky.</td>
+          <td><span class="score hard">Admin risk</span> Ladakh may reject self-timed/self-supported evidence.</td>
+          <td>Do not rely on it for KC qualification.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="decision">
+    <h2>Decision Gates</h2>
+    <ul>
+      <li><strong>By 15 Aug 2026:</strong> decide whether Hennur Bamboo Ultra 50K is green for a sub-6 attempt. Criteria: pain-free build, long-run durability, realistic trail pace, and written confirmation that the certificate is acceptable.</li>
+      <li><strong>If Hennur is not green:</strong> switch the 50K qualifier focus to Border 50K Jaisalmer and confirm official timing, support, route/distance, and Ladakh acceptance in writing.</li>
+      <li><strong>After the chosen 50K:</strong> protect the run build toward Tata Mumbai Marathon. Kolkata 25K should be controlled, especially if Border 50K is raced two weeks earlier.</li>
+      <li><strong>17 Jan 2027:</strong> Tata Mumbai Marathon is the primary sub-5 full-marathon qualifier.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Intermediary Races</h2>
+    <p>Intermediary races are useful, but they should reduce uncertainty rather than add fatigue.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Race Type</th>
+          <th>Purpose</th>
+          <th>Best Use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>10K road race</td>
+          <td>Leg turnover, pacing practice, timing certificate refresh.</td>
+          <td>July-August 2026, not all-out if training load is increasing.</td>
+        </tr>
+        <tr>
+          <td>Half marathon</td>
+          <td>Fitness checkpoint before full marathon block.</td>
+          <td>VDHM 2026. Treat as a controlled test, not the season peak.</td>
+        </tr>
+        <tr>
+          <td>25K-30K supported run</td>
+          <td>Fueling, shoes, long-run confidence.</td>
+          <td>Only if it replaces a planned long run and does not require travel stress.</td>
+        </tr>
+        <tr>
+          <td>Trail/forest short race</td>
+          <td>KC-specific footwork and durability.</td>
+          <td>Optional after the main qualifiers are secure; not before the sub-5/sub-6 attempts.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Adventure Race Framework</h2>
+    <p>
+      These are optional "fun" races, not KC qualifiers. They should be judged by whether they add durability,
+      confidence, and mountain handling without stealing recovery from VDHM, the December marathon, or the 50K qualifier.
+    </p>
+    <div class="grid cols-2">
+      <div class="note">
+        <h3>Evaluation Rules</h3>
+        <ul>
+          <li><strong>Calendar cost:</strong> any trail race inside 3 weeks of VDHM or the marathon should be run conservatively or skipped.</li>
+          <li><strong>Effort distance:</strong> estimate trail load as distance plus 1 km for every 100 m of climb. A 20 km trail with 1,500 m gain behaves more like a 35 km road effort.</li>
+          <li><strong>Surface cost:</strong> sand, wet rock, forest trail, and steep descents matter more than distance because they raise fall and quad-damage risk.</li>
+          <li><strong>Cutoff realism:</strong> the target is a comfortable finish, not racing. If cutoff requires pushing near marathon effort, it is not serving the plan.</li>
+          <li><strong>Training role:</strong> choose one primary benefit: climbing strength, downhill skill, fueling practice, or mental confidence.</li>
+        </ul>
+      </div>
+      <div class="note decision">
+        <h3>How To Use Them</h3>
+        <ul>
+          <li>Keep these as B/C events: hike climbs, run flats/easy descents, and finish with legs intact.</li>
+          <li>No taper longer than 2-3 easy days unless the race replaces a planned long run.</li>
+          <li>No all-out downhill running before VDHM or Goa; eccentric damage is the main hidden cost.</li>
+          <li>Carry mandatory kit even when aid is available: hydration, calories, shell, headlamp if early start, phone, ID, and basic first aid.</li>
+        </ul>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Race</th>
+          <th>Known Details</th>
+          <th>Training Value</th>
+          <th>Main Risk</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Lake To Lake Ultra 30K</strong><small>New Lake / Chandigarh side to Tikkar Taal, 16 Aug 2026</small></td>
+          <td>Townscript page lists the 30K start at 0600 on 16 Aug 2026, a 6-hour cutoff, hydration every 5 km, transport to the second start line, and a climb through Morni Hills toward Tikkar Taal. The route is described as monsoon-drenched and hilly; elevation profile is linked externally via Instagram.</td>
+          <td><span class="score easy">High</span> Best use is a supported long-run rehearsal: climbing hike/run mix, fueling every 30-40 minutes, wet-weather gear, and downhill control.</td>
+          <td><span class="score medium">Medium</span> Monsoon roads/trails, sustained climb, and a 6-hour cutoff. It is early enough in the calendar, but only if weekly volume has already moved well above 20 km.</td>
+          <td><strong>Good optional race.</strong> Treat it as a controlled long day, not a performance effort. This is the better of the two fun races for the KC build because it is 9 weeks before VDHM.</td>
+        </tr>
+        <tr>
+          <td><strong>Indrahar Summit Run 20K</strong><small>McLeodganj - Snow Line - McLeodganj, 3 Oct 2026</small></td>
+          <td>Zen Mountain lists the Adventure/Summit 4 category as 20 km, ITRA 1 point, 4:30 AM start, max altitude about 10,500 ft, and suitable for experienced runners/trekkers. Trace de Trail's 20K route record shows 19.26 km with about 1,535 m gain and 1,540 m loss, max elevation 3,189 m.</td>
+          <td><span class="score medium">Very high but specific</span> Excellent for climbing strength, technical trail confidence, hiking economy, poles/pack practice if allowed, and altitude exposure.</td>
+          <td><span class="score hard">High</span> Effort-distance is roughly 34-35 km before accounting for altitude. It is only about 15 days before VDHM 2026, so descents and altitude fatigue can blunt the half-marathon checkpoint.</td>
+          <td><strong>Do only as a hike-run adventure.</strong> If VDHM remains important, cap effort at easy/RPE 5-6 and accept a slow finish. If fatigue or niggles exist in late September, downgrade to 10K/16K or skip.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Source Notes</h2>
+    <ul class="source-list">
+      <li><a href="https://ladakhmarathon.com/races/khardung-la-challenge/">Ladakh Marathon: Khardung La Challenge page</a> for current eligibility paths, 72K distance, and cutoffs.</li>
+      <li><a href="https://ladakhmarathon.com/Eligibility-Criteria/">Ladakh Marathon: eligibility criteria</a> for exclusions covering stadium, 24-hour, virtual, and personal timings.</li>
+      <li><a href="https://tcsworld10k.procam.in/race-categories/open-10k/confirmation-criteria">TCS World 10K Bengaluru Open 10K confirmation criteria</a> for the TCS timing-certificate thresholds.</li>
+      <li><a href="https://tatamumbaimarathon.procam.in/race-categories/marathon/confirmation-criteria">Tata Mumbai Marathon marathon confirmation criteria</a> for full marathon entry timing thresholds and certificate standards.</li>
+      <li><a href="https://tatamumbaimarathon.procam.in/entry-rules-regulations/">Tata Mumbai Marathon entry rules</a> for online application, age eligibility, and confirmation conditions.</li>
+      <li><a href="https://chandigarhfastmarathon.com/">Chandigarh Fast Marathon official site</a> for 2027 fast-course description and strict entry qualification thresholds.</li>
+      <li><a href="https://www.runners.quest/au-bank-jaipur-marathon/">Runners Quest AU Jaipur Marathon 2027 reference</a> for 2027 status and 2026 flat/fast course, categories, start time, and results links.</li>
+      <li><a href="https://www.marathonjaipur.com/terms.asp">AU Jaipur Marathon terms</a> for 2026 marathon age, registration, bib, timing-chip, and medical-certificate conditions.</li>
+      <li><a href="https://marathonmitra.com/events/jaipur-ultra-run-2026">MarathonMitra Jaipur Ultra Run 2026 listing</a> for 50K date, cutoff, terrain, aid-station, and route notes.</li>
+      <li><a href="https://runizen.com/e/9R3Feq">Runizen The Border Ultra Jaisalmer 2025 results</a> and <a href="https://allinrunning.com/the-border">All In Running Border programme page</a> for Jaisalmer 50K result evidence and training/entry context.</li>
+      <li><a href="https://www.tuffmanindia.com/races/jaisalmer-ultra.html">Tuffman Jaisalmer Desert Ultra historical page</a> for desert terrain, sand/gravel, support, timing-bib, and cutoff context.</li>
+      <li><a href="https://zenmountain.in/event/indrahar-summit-run/">Zen Mountain Indrahar Summit Run 2026 page</a> for 20K date, start time, max altitude, category, inclusions, and race description.</li>
+      <li><a href="https://tracedetrail.fr/en/trace/261398">Trace de Trail Indrahar 20K route</a> for distance, elevation gain/loss, and max elevation.</li>
+      <li><a href="https://www.townscript.com/e/lake-to-lake-ultra-2025-l-new-lake-42-chd-tikkar-taal-l-55km-30km-422022">Townscript Lake To Lake Ultra 2026 page</a> for the 30K date, start time, cutoff, route description, and aid spacing.</li>
+      <li><a href="https://tataultra.com/race.html">Tata Ultra Marathon race details</a> for 2026 50K date, cutoff, eligibility, and road-ultra rules.</li>
+      <li><a href="https://tataultra.com/Handbook-5.pdf">Tata Ultra 2026 handbook</a> for route/elevation chart reference.</li>
+      <li><a href="https://www.plotaroute.com/route/2504830">Plotaroute Tata Ultra 50K route</a> for unofficial ascent/descent estimate.</li>
+      <li><a href="https://bangaloreultra.com/">Bangalore Ultra official site</a> for 2026 50K category.</li>
+      <li><a href="https://racemart.in/events/bangalore-ultra-2026">RaceMart Bangalore Ultra listing</a> for event date and road/flat terrain note.</li>
+      <li><a href="https://marathonmitra.com/events/hennur-bamboo-ultra-2026">MarathonMitra Hennur Bamboo Ultra listing</a> for 50K date, cutoff, loop, timing, and terrain notes.</li>
+      <li><a href="https://malnadultra.com/">Malnad Ultra official site</a> and <a href="https://malnadultra.com/info/">Malnad 50K information</a> for date, 50K cutoff, and 1,705 m ascent/descent.</li>
+      <li><a href="https://ootyultra.com/routenelevation.html">OOTYULTRA route and elevation page</a> for 50K altitude/elevation data.</li>
+      <li><a href="https://tuffmanindia.com/races/shimla-ultra.html">Tuffman Shimla Ultra page</a> for hill-ultra cutoff and difficulty context.</li>
+      <li><a href="https://hyderabadrunners.com/events/nmdc-hyderabad-marathon-2026/">Hyderabad Runners NMDC Hyderabad Marathon page</a> and <a href="https://www.marathonhyderabad.com/hrf_faq/are-there-cut-off-times-for-all-the-events/">cutoff FAQ</a> for 2026 marathon date and cutoff.</li>
+      <li><a href="https://skfgoarivermarathon.com/cgi-bin/">SKF Goa River Marathon official site</a> and <a href="https://racemart.in/events/skf-goa-river-marathon-2026">RaceMart Goa listing</a> for 2026 date, full marathon, and cutoff.</li>
+      <li><a href="https://tatamumbaimarathon.procam.in/race-categories/marathon/runner-information/timing-cut-offs-policy">Tata Mumbai Marathon timing cutoff policy</a> for 2026 full marathon cutoff reference.</li>
+      <li><a href="https://newdelhimarathon.com/rules/">New Delhi Marathon rules</a> for 2026 age, bib, and timing-certificate rules; the FAQ page was intermittently suspended during research.</li>
+      <li><a href="https://www.runners.quest/airtel-delhi-half-marathon/">Runners Quest VDHM 2026/2025 reference</a> for prior Vedanta Delhi Half Marathon timing-entry criteria, pending 2026 official release.</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
