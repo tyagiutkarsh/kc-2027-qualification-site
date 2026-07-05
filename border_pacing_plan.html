@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Border 50K Pacing Plan</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f766e'/%3E%3Cpath d='M8 44 25 18l8 12 6-8 17 22H8Z' fill='%23ffffff'/%3E%3Cpath d='M25 18l8 12-5-2-4 5-4-4-12 15h48L39 22l-6 8-8-12Z' fill='%23d1fae5'/%3E%3Ctext x='32' y='56' font-family='Arial,sans-serif' font-size='14' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EKC%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5d6a76;
+      --line: #d9e0e7;
+      --panel: #f6f8fa;
+      --paper: #ffffff;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --good: #047857;
+      --warn: #92400e;
+      --bad: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: var(--ink);
+      background: #edf1f5;
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    header, section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+    }
+    header { margin-bottom: 18px; }
+    section { margin-top: 18px; }
+    h1, h2, h3 { line-height: 1.2; margin: 0; }
+    h1 { font-size: clamp(30px, 4vw, 46px); letter-spacing: 0; }
+    h2 { font-size: 24px; margin-bottom: 12px; }
+    h3 { font-size: 18px; margin-bottom: 8px; }
+    p { margin: 8px 0 0; }
+    a { color: #075985; }
+    .lede {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 12px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .note {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+    }
+    .note strong { color: var(--ink); }
+    .warning {
+      border-left: 4px solid var(--bad);
+      background: #fff5f5;
+    }
+    .decision {
+      border-left: 4px solid var(--accent-2);
+      background: #fff7ed;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #e9eef3;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #334155;
+    }
+    td small {
+      color: var(--muted);
+      display: block;
+      margin-top: 3px;
+    }
+    ul { margin: 10px 0 0 20px; padding: 0; }
+    li { margin: 5px 0; }
+    .good { color: var(--good); font-weight: 750; }
+    .warn { color: var(--warn); font-weight: 750; }
+    .bad { color: var(--bad); font-weight: 750; }
+    @media (max-width: 850px) {
+      main { width: min(100% - 20px, 1180px); padding-top: 10px; }
+      header, section { padding: 16px; }
+      .grid.cols-2, .grid.cols-3 { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+      td { white-space: normal; min-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="meta">
+      <a class="pill" href="index.html">Back to KC qualification page</a>
+      <a class="pill" href="high_level_plan.html">High level plan</a>
+    </div>
+    <h1>Border 50K Pacing Plan</h1>
+    <p class="lede">
+      Execution plan for the planned Border 50K, Jaisalmer qualifier. The target is not to show speed; it is to bank an official sub-6 50K while keeping enough recovery for the January marathon build.
+    </p>
+    <div class="meta">
+      <span class="pill">Race date in plan: 19 Dec 2026</span>
+      <span class="pill">KC floor: under 6:00</span>
+      <span class="pill">Operating target: 5:55</span>
+      <span class="pill">Average for 6:00: 7:12/km</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Race Read</h2>
+    <div class="grid cols-3">
+      <div class="note">
+        <h3>Course Shape</h3>
+        <p>The local route file measures about <strong>50.18 km</strong>, with roughly <strong>392 m gain</strong> and <strong>455 m loss</strong>. Elevation ranges from about <strong>161 m</strong> to <strong>267 m</strong>.</p>
+      </div>
+      <div class="note">
+        <h3>Terrain Risk</h3>
+        <p>Plan for low-altitude desert running with wind, exposed road or mixed surfaces, dry air, sand/gravel patches, and support gaps. Pace by effort first.</p>
+      </div>
+      <div class="note warning">
+        <h3>Admin Gate</h3>
+        <p>Use this as the KC 50K only after confirming official timing, result publication, certificate quality, and Ladakh Marathon acceptance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Target Strategy</h2>
+    <div class="grid cols-2">
+      <div class="note decision">
+        <h3>Primary Target</h3>
+        <p><strong>5:55 finish</strong> gives about 5 minutes of buffer under the KC requirement. That is roughly <strong>7:05/km</strong> over 50.1 km, but the watch pace should not be chased blindly on loose surface or into wind.</p>
+      </div>
+      <div class="note">
+        <h3>Effort Rule</h3>
+        <p>First 30 km should feel like an easy long run with discipline. From 30-40 km, hold form. Only from 40 km should the plan become pace-protective.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Split Plan</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Segment</th>
+          <th>Terrain / Elevation Read</th>
+          <th>Target Split</th>
+          <th>Cumulative</th>
+          <th>Execution Cue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0-10 km</td>
+          <td>Net drop from roughly 250 m to 175 m.</td>
+          <td>1:15</td>
+          <td>1:15</td>
+          <td>Start deliberately. If it feels too easy, that is correct. No free-speed ego.</td>
+        </tr>
+        <tr>
+          <td>10-20 km</td>
+          <td>Lowest section, then gentle rise toward 20 km.</td>
+          <td>1:12</td>
+          <td>2:27</td>
+          <td>Settle into all-day rhythm. Eat early before thirst or hunger appears.</td>
+        </tr>
+        <tr>
+          <td>20-30 km</td>
+          <td>Gradual rise from roughly 182 m to 216 m.</td>
+          <td>1:10</td>
+          <td>3:37</td>
+          <td>Stay smooth. Do not force pace into wind or sand. Shorten stride if surface worsens.</td>
+        </tr>
+        <tr>
+          <td>30-40 km</td>
+          <td>Rolling section around 200-216 m.</td>
+          <td>1:09</td>
+          <td>4:46</td>
+          <td>This is the control segment. Protect cadence, shoulders, and fueling.</td>
+        </tr>
+        <tr>
+          <td>40-50 km</td>
+          <td>Mostly rolling to slight drop toward the finish.</td>
+          <td>1:09</td>
+          <td>5:55</td>
+          <td>Hold the line. If sub-6 is safe, stay economical rather than surging.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Fuel And Fluids</h2>
+    <div class="grid cols-2">
+      <div class="note">
+        <h3>Calories</h3>
+        <ul>
+          <li>Start fueling by 25-30 minutes.</li>
+          <li>Target 45-60 g carbohydrate per hour if gut training supports it.</li>
+          <li>Use the same gels/drink mix rehearsed in long runs. No race-day experiments.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h3>Hydration</h3>
+        <ul>
+          <li>Drink to schedule, not only thirst.</li>
+          <li>Use sodium consistently; dry desert air can hide sweat loss.</li>
+          <li>If aid is sparse, carry enough fluid to bridge the longest unsupported section.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Decision Points</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Point</th>
+          <th>Green</th>
+          <th>Yellow</th>
+          <th>Red</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>20 km</td>
+          <td class="good">Breathing easy, stomach calm, legs normal.</td>
+          <td class="warn">Minor heat/wind cost. Keep effort, ignore pace.</td>
+          <td class="bad">Back/hip changes gait. Switch to finish-safe mode.</td>
+        </tr>
+        <tr>
+          <td>30 km</td>
+          <td class="good">Can still speak in short phrases and fuel normally.</td>
+          <td class="warn">Heavy legs but stable form. Add walk breaks only at aid.</td>
+          <td class="bad">Nausea, cramps, or gait change. Protect health over target.</td>
+        </tr>
+        <tr>
+          <td>40 km</td>
+          <td class="good">Sub-6 buffer intact. Lock rhythm and finish.</td>
+          <td class="warn">Buffer thin. Run flats/downs, hike only rough patches.</td>
+          <td class="bad">Target gone. Finish only if safe and useful.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Training Checks</h2>
+    <ul>
+      <li>By late October: 70-80 km weeks should be manageable without back flare-ups.</li>
+      <li>By November: complete at least one 32-36 km long run with fueling every 30-35 minutes.</li>
+      <li>Before taper: rehearse the exact race shoe, socks, bottle/vest setup, gels, sodium, and breakfast.</li>
+      <li>If long-run recovery exceeds 48 hours repeatedly, downgrade the race target or use a backup qualifier.</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
