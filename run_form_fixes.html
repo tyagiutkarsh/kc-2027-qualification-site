@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Run Form Fix Plan</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f766e'/%3E%3Cpath d='M8 44 25 18l8 12 6-8 17 22H8Z' fill='%23ffffff'/%3E%3Cpath d='M25 18l8 12-5-2-4 5-4-4-12 15h48L39 22l-6 8-8-12Z' fill='%23d1fae5'/%3E%3Ctext x='32' y='56' font-family='Arial,sans-serif' font-size='14' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EKC%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5d6a76;
+      --line: #d9e0e7;
+      --panel: #f6f8fa;
+      --paper: #ffffff;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --good: #047857;
+      --warn: #92400e;
+      --bad: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: var(--ink);
+      background: #edf1f5;
+    }
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    header, section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+    }
+    header { margin-bottom: 18px; }
+    section { margin-top: 18px; }
+    h1, h2, h3 { line-height: 1.2; margin: 0; }
+    h1 { font-size: clamp(30px, 4vw, 46px); letter-spacing: 0; }
+    h2 { font-size: 24px; margin-bottom: 12px; }
+    h3 { font-size: 18px; margin-bottom: 8px; }
+    p { margin: 8px 0 0; }
+    a { color: #075985; }
+    .lede {
+      max-width: 920px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 12px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .note {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+    }
+    .warning {
+      border-left: 4px solid var(--bad);
+      background: #fff5f5;
+    }
+    .decision {
+      border-left: 4px solid var(--accent-2);
+      background: #fff7ed;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #e9eef3;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #334155;
+    }
+    td small {
+      color: var(--muted);
+      display: block;
+      margin-top: 3px;
+    }
+    ul { margin: 10px 0 0 20px; padding: 0; }
+    li { margin: 5px 0; }
+    .good { color: var(--good); font-weight: 750; }
+    .warn { color: var(--warn); font-weight: 750; }
+    .bad { color: var(--bad); font-weight: 750; }
+    @media (max-width: 850px) {
+      main { width: min(100% - 20px, 1180px); padding-top: 10px; }
+      header, section { padding: 16px; }
+      .grid.cols-2, .grid.cols-3 { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+      td { white-space: normal; min-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="meta">
+      <a class="pill" href="index.html">Back to KC qualification page</a>
+      <a class="pill" href="high_level_plan.html">High level plan</a>
+      <a class="pill" href="border_pacing_plan.html">Border pacing plan</a>
+    </div>
+    <h1>Run Form Fix Plan</h1>
+    <p class="lede">
+      Summary and correction plan from the 4 Jul 2026 treadmill form review. The goal is not cosmetic form change; it is lower braking, better frontal-plane stability, and enough tissue tolerance for the Border 50K build.
+    </p>
+    <div class="meta">
+      <span class="pill">Report date: 4 Jul 2026</span>
+      <span class="pill">Overall form: 4/10</span>
+      <span class="pill">Stability: 2/10</span>
+      <span class="pill">Injury risk: high</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Main Findings</h2>
+    <div class="grid cols-3">
+      <div class="note warning">
+        <h3>Overstriding</h3>
+        <p>Pronounced heel strike with the foot landing ahead of the body and the knee too straight at contact. This creates braking force and higher knee load.</p>
+      </div>
+      <div class="note warning">
+        <h3>Overpronation</h3>
+        <p>The foot lands laterally then collapses inward during loading. This leaks energy and raises shin, plantar fascia, and knee-tracking risk.</p>
+      </div>
+      <div class="note warning">
+        <h3>Narrow Step Width</h3>
+        <p>The stance is very narrow, almost crossing the midline. This increases pronation, knee valgus, and IT-band stress.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Priority Fixes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Priority</th>
+          <th>Problem</th>
+          <th>Cue</th>
+          <th>Drill</th>
+          <th>Strength Support</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Overstriding and braking</td>
+          <td>Shorter, quicker steps. Land under hips.</td>
+          <td>A-skips, high knees, short relaxed strides.</td>
+          <td>Pogo jumps, calf stiffness work.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Tightrope / crossover stride</td>
+          <td>Run on either side of a painted line.</td>
+          <td>Straddling-the-line jogs and strides.</td>
+          <td>Banded lateral walks, monster walks.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Straight knee at impact</td>
+          <td>Soft knees.</td>
+          <td>Gentle downhill strides only when fresh.</td>
+          <td>Step-downs, eccentric single-leg squats.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Ankle / arch collapse</td>
+          <td>Push off the big toe.</td>
+          <td>Barefoot grass walking, foot-control drills.</td>
+          <td>Standing and seated calf raises, towel scrunches.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Lateral hip control</td>
+          <td>Keep knee tracking over foot.</td>
+          <td>Single-leg balance and controlled bounds later.</td>
+          <td>Clamshells, Bulgarian split squats, split squats.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>4-Week Fix Plan</h2>
+    <div class="grid cols-2">
+      <div class="note decision">
+        <h3>Every Easy Run</h3>
+        <ul>
+          <li>Use a metronome 5% above natural cadence, not 10% immediately.</li>
+          <li>Focus on quick, quiet steps for the first 10-15 minutes.</li>
+          <li>Keep the feet on either side of an imaginary line.</li>
+          <li>Stop cueing once fatigue makes form forced.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h3>Before 3 Runs / Week</h3>
+        <ul>
+          <li>A-skips: 2 x 20 m.</li>
+          <li>Straddling-the-line jog: 2 x 50 m.</li>
+          <li>Optional relaxed strides: 4 x 20 seconds only when legs feel fresh.</li>
+        </ul>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Exercise</th>
+          <th>Dose</th>
+          <th>Purpose</th>
+          <th>Placement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Banded lateral walks</td>
+          <td>3 x 15 steps each direction</td>
+          <td>Glute medius, knee valgus control</td>
+          <td>Warm-up or light strength day</td>
+        </tr>
+        <tr>
+          <td>Single-leg step-downs</td>
+          <td>3 x 8-10 each side</td>
+          <td>Knee tracking and eccentric control</td>
+          <td>Strength days, before heavy fatigue</td>
+        </tr>
+        <tr>
+          <td>Heavy calf raises</td>
+          <td>3 x 12-20</td>
+          <td>Calf, ankle, arch stiffness</td>
+          <td>2-3 times weekly</td>
+        </tr>
+        <tr>
+          <td>Dead bug / side plank</td>
+          <td>2-3 sets</td>
+          <td>Trunk control without back irritation</td>
+          <td>End of gym or mobility sessions</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>How This Fits The KC Build</h2>
+    <ul>
+      <li>Do not add aggressive speed work until 38-42 km weeks are repeatable and calves/shins stay quiet.</li>
+      <li>Use cadence and step-width cues during easy runs before using them in threshold sessions.</li>
+      <li>Keep long-run effort easy while form changes are being absorbed.</li>
+      <li>Consider stability shoes as a support tool if neutral shoes are not controlling collapse, but do not use shoes as a substitute for strength.</li>
+      <li>Re-check video after 4 weeks: side view for overstride, rear view for crossover and pronation.</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
