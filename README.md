@@ -1,5 +1,5 @@
-# KC 2027 Qualification Plan
+# Raceplan
 
-Static site for the Khardung La Challenge 2027 qualification race plan.
+Static site for the race calendar and planning path through Border 50K, T100 Singapore, and Khardung La Challenge 2027 qualification.
 
-The site is a single `index.html` file and can be served by any static host.
+The site is served from `index.html`; `raceplan.html` is kept as a named copy of the same page.
