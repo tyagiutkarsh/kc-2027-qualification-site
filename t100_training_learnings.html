@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>T100 Training Learnings</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5d6a76;
+      --line: #d9e0e7;
+      --panel: #f6f8fa;
+      --paper: #ffffff;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --bad: #b91c1c;
+      --good: #047857;
+      --warn: #92400e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: var(--ink);
+      background: #edf1f5;
+    }
+    main {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    header, section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    section { margin-top: 18px; }
+    h1, h2, h3 { line-height: 1.2; margin: 0; }
+    h1 { font-size: clamp(28px, 4vw, 44px); letter-spacing: 0; }
+    h2 { font-size: 24px; margin-bottom: 12px; }
+    h3 { font-size: 18px; margin-bottom: 8px; color: var(--accent); }
+    p { margin: 8px 0 0; }
+    a { color: #075985; }
+    ul { margin: 10px 0 0 20px; padding: 0; }
+    li { margin: 5px 0; }
+    .lede {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 12px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card, .note {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #e9eef3;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #334155;
+    }
+    .good { color: var(--good); font-weight: 750; }
+    .warn { color: var(--warn); font-weight: 750; }
+    .bad { color: var(--bad); font-weight: 750; }
+    .decision {
+      border-left: 4px solid var(--accent-2);
+      background: #fff7ed;
+    }
+    @media (max-width: 850px) {
+      main { width: min(100% - 20px, 1100px); padding-top: 10px; }
+      header, section { padding: 16px; }
+      .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+      td { white-space: normal; min-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>T100 Training Learnings</h1>
+    <p class="lede">
+      Working notes from the Singapore T100 bike GPX, Goa 70.3 bike feeler GPX, aero-position limitation, and heat/humidity risk.
+      The goal is to make training choices clearer for a sub-5 T100 attempt.
+    </p>
+    <div class="meta">
+      <span class="pill">Last updated: 26 July 2026</span>
+      <span class="pill">Race target: T100 Singapore sub-5</span>
+      <span class="pill">Working format: 2 km swim, 80 km bike, 18 km run</span>
+      <a class="pill" href="raceplan.html">Raceplan</a>
+      <a class="pill" href="border_pacing_plan.html">Border pacing plan</a>
+      <a class="pill" href="run_form_fixes.html">Run form fixes</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Bottom Line</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>Course Read</h3>
+        <p>Singapore is shorter than Goa and has similar climbing per km, but it is much more technical. The course rewards clean handling, fast aero re-entry, and controlled accelerations more than long uninterrupted steady-state riding.</p>
+      </div>
+      <div class="card">
+        <h3>Aero Read</h3>
+        <p>The turns help because they create natural micro-breaks from aero. They do not remove the need for aero comfort. The race skill is repeatable aero blocks, not one heroic continuous aero hold.</p>
+      </div>
+      <div class="card">
+        <h3>Weather Read</h3>
+        <p>Singapore in April should be treated as hot, humid, and sweat-rate limited until race-week forecast says otherwise. Heat management has to be trained, not improvised.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>GPX Analysis Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>T100 Singapore Bike</th>
+          <th>Goa 70.3 Bike Feeler</th>
+          <th>Training Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Distance</td>
+          <td>79.1 km</td>
+          <td>89.9 km</td>
+          <td>T100 is shorter, but the sub-5 target requires a much faster average speed.</td>
+        </tr>
+        <tr>
+          <td>Estimated ascent</td>
+          <td>~568 m</td>
+          <td>~628 m</td>
+          <td>Climbing load per km is similar: roughly 7 m/km on both files.</td>
+        </tr>
+        <tr>
+          <td>Course shape</td>
+          <td>~87 meaningful turns; ~23 U-turn-like changes</td>
+          <td>~13 meaningful turns; ~4 U-turn-like changes</td>
+          <td>Singapore is far more stop-start and handling-heavy.</td>
+        </tr>
+        <tr>
+          <td>Goa execution data</td>
+          <td>No timestamps in GPX</td>
+          <td>3:07:21, 28.8 km/h average, HR ~154, cadence ~80</td>
+          <td>Goa is useful as an endurance benchmark, but not enough for Singapore-specific speed and handling.</td>
+        </tr>
+        <tr>
+          <td>Sub-5 bike requirement</td>
+          <td>~2:25-2:32 target range for 80 km</td>
+          <td>Goa feeler was 28.8 km/h</td>
+          <td>Singapore likely needs roughly 32-33 km/h race-day average while still preserving the run.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Aero Training Commentary</h2>
+    <div class="grid cols-2">
+      <div class="note">
+        <h3>What The Course Helps With</h3>
+        <ul>
+          <li>Frequent corners and U-turns create natural chances to sit up briefly.</li>
+          <li>You probably do not need uninterrupted 30-40 minute aero holds.</li>
+          <li>The practical race demand is repeated 5-15 minute aero chunks.</li>
+          <li>Short breaks can help neck, shoulders, lower back, and hip angle if you re-enter aero quickly.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h3>What The Course Does Not Solve</h3>
+        <ul>
+          <li>Sitting up too often will cost speed and force extra watts after corners.</li>
+          <li>Technical courses punish power spikes because every surge taxes the later run.</li>
+          <li>If aero creates lower-back debt, the run split becomes the casualty.</li>
+          <li>A sub-5 attempt still needs a position you can return to calmly again and again.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note decision" style="margin-top:14px">
+      <h3>Progression To Build</h3>
+      <p>Start with 5 x 5 min aero with 2 min upright. Build toward 4 x 10 min, then 3 x 15 min. Race-specific work should use 10-15 min aero blocks interrupted by 20-40 sec sit-up or turn simulations, then a short brick run.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Weather And Humidity Risk</h2>
+    <div class="grid cols-2">
+      <div class="note">
+        <h3>Singapore Risk</h3>
+        <ul>
+          <li>April should be assumed hot, humid, and high sweat-rate until the race-week forecast is available.</li>
+          <li>Humidity reduces evaporative cooling; perceived effort can rise even when power is controlled.</li>
+          <li>Wet roads are plausible, which makes cornering discipline and tire confidence more important.</li>
+          <li>Hydration, sodium, and cooling should be practiced during long rides and bricks.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h3>Goa Feeler Weather</h3>
+        <ul>
+          <li>The Goa GPX ride window was roughly 07:51-10:58 IST on 9 Nov 2025.</li>
+          <li>Historical conditions near the route: 24.6-31.4 C air temperature, apparent temperature up to 33.8 C.</li>
+          <li>Humidity dropped from about 78% to 40%; rain was 0 mm during the ride window.</li>
+          <li>Wind was modest at about 7-8 km/h, with gusts around 18-21 km/h.</li>
+        </ul>
+      </div>
+    </div>
+    <p>
+      Training implication: Goa was warm but manageable. Singapore is more likely to be humidity-limited, so the race plan should include conservative early bike effort, steady fueling, and no avoidable surges before the run.
+    </p>
+  </section>
+
+  <section>
+    <h2>Priority Workouts</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Need</th>
+          <th>Workout Type</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Aero repeatability</td>
+          <td>5-15 min aero intervals with short upright resets</td>
+          <td>Make aero re-entry automatic without back or neck debt.</td>
+        </tr>
+        <tr>
+          <td>Technical speed</td>
+          <td>Corner-exit accelerations: 20-60 sec controlled surges, then settle</td>
+          <td>Prepare for Singapore's repeated turns without overbiking.</td>
+        </tr>
+        <tr>
+          <td>Race durability</td>
+          <td>2.5-3.0 hour rides with sustained race-effort blocks</td>
+          <td>Test whether 32-33 km/h equivalent effort is realistic.</td>
+        </tr>
+        <tr>
+          <td>Run preservation</td>
+          <td>Short brick runs after technical bike sessions</td>
+          <td>Check whether the bike session leaves legs for 18 km run execution.</td>
+        </tr>
+        <tr>
+          <td>Heat control</td>
+          <td>Warm-condition rides with planned fluid and sodium intake</td>
+          <td>Reduce surprise from Singapore humidity and sweat-rate demands.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+</body>
+</html>
