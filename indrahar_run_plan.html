@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Indrahar Run Plan</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5d6a76;
+      --line: #d9e0e7;
+      --panel: #f6f8fa;
+      --paper: #ffffff;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --bad: #b91c1c;
+      --good: #047857;
+      --warn: #92400e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      color: var(--ink);
+      background: #edf1f5;
+    }
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    header, section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    section { margin-top: 18px; }
+    h1, h2, h3 { line-height: 1.2; margin: 0; }
+    h1 { font-size: clamp(30px, 4vw, 46px); letter-spacing: 0; }
+    h2 { font-size: 24px; margin-bottom: 12px; }
+    h3 { font-size: 18px; margin-bottom: 8px; color: var(--accent); }
+    p { margin: 8px 0 0; }
+    a { color: #075985; }
+    ul, ol { margin: 10px 0 0 20px; padding: 0; }
+    li { margin: 5px 0; }
+    img {
+      display: block;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #e9eef3;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #334155;
+    }
+    .lede {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 12px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card, .note {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+    }
+    .decision {
+      border-left: 4px solid var(--accent-2);
+      background: #fff7ed;
+    }
+    .warning {
+      border-left: 4px solid var(--bad);
+      background: #fff5f5;
+    }
+    .good { color: var(--good); font-weight: 750; }
+    .warn { color: var(--warn); font-weight: 750; }
+    .bad { color: var(--bad); font-weight: 750; }
+    @media (max-width: 850px) {
+      main { width: min(100% - 20px, 1120px); padding-top: 10px; }
+      header, section { padding: 16px; }
+      .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+      td { white-space: normal; min-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Indrahar Run Plan</h1>
+    <p class="lede">
+      B-race plan for Summit Run Indrahar 20K: a McLeodganj / RMC to Snow Line out-and-back with steep Himalayan climbing,
+      rocky trail, altitude exposure, and meaningful descent damage risk. The goal is mountain durability without compromising
+      the Border 50K build.
+    </p>
+    <div class="meta">
+      <span class="pill">Event day: 3 Oct 2026</span>
+      <span class="pill">Role: B race</span>
+      <span class="pill">Distance: 20 km out and back</span>
+      <span class="pill">Elevation gain: 4,525 ft</span>
+      <span class="pill">Max elevation: 10,400 ft</span>
+      <a class="pill" href="raceplan.html">Raceplan</a>
+      <a class="pill" href="border_pacing_plan.html">Border pacing plan</a>
+    </div>
+  </header>
+
+  <section>
+    <img src="assets/indrahar-route-map.png" alt="Indrahar 20K route map from RMC to Snow Line and back">
+  </section>
+
+  <section>
+    <h2>Race Read</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>Primary Goal</h3>
+        <p>Finish controlled, confident, and structurally intact. This is a B race, not an all-out peak. The win is resuming Border-specific training within the following week.</p>
+      </div>
+      <div class="card">
+        <h3>Terrain</h3>
+        <p>Expect steep uphill hiking, runnable but uneven trail, rocks, boulders, exposed sections, and technical downhill. Race reports describe the route as closer to trail hike than road race.</p>
+      </div>
+      <div class="card">
+        <h3>Altitude</h3>
+        <p>The top is around 10,400 ft. Breathing and pacing will change above Triund/Snow Line altitude. Do not force sea-level effort or road-run cadence.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Route And Effort Model</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th>Likely Feel</th>
+          <th>Execution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RMC / McLeodganj to Gallu Devi side</td>
+          <td>Early climbing, crowding, dark/low-light start if similar to prior editions.</td>
+          <td>Start under control. No racing in the first hour. Let people go.</td>
+        </tr>
+        <tr>
+          <td>Gallu Devi to Triund ridge</td>
+          <td>Steady climbing through forest and ridge trail. Hiking will be normal.</td>
+          <td>Power-hike steep grades, short-run only where the trail gives free speed.</td>
+        </tr>
+        <tr>
+          <td>Triund to Snow Line</td>
+          <td>Higher altitude, better views, rockier surface, breathing cost rising.</td>
+          <td>Keep steps deliberate. Protect ankles and avoid redlining for position.</td>
+        </tr>
+        <tr>
+          <td>Turnaround / Snow Line</td>
+          <td>Highest point of the 20K. Cooling risk if stopped too long.</td>
+          <td>Refill, eat, layer check, leave calmly. Do not linger unless weather or breathing demands it.</td>
+        </tr>
+        <tr>
+          <td>Descent to RMC</td>
+          <td>Most damaging part. Quads, ankles, and falls are the risk.</td>
+          <td>Fast feet, low ego. Walk technical rocks. Run smoother dirt. No all-out downhill.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Travel Plan</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Plan</th>
+          <th>Training Intent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>30 Sep</td>
+          <td>Arrive in McLeodganj / Dharamshala. Acclimatization trip to 8,500-9,000 ft and back.</td>
+          <td>Move easily, test breathing, do not turn acclimatization into training.</td>
+        </tr>
+        <tr>
+          <td>1 Oct</td>
+          <td>Rest.</td>
+          <td>Short walk only. Hydrate, eat normally, avoid unnecessary stairs and sightseeing fatigue.</td>
+        </tr>
+        <tr>
+          <td>2 Oct</td>
+          <td>BIB and race-kit collection, gear check.</td>
+          <td>Finalize kit, calories, layers, shoes, poles if allowed, and race-morning logistics.</td>
+        </tr>
+        <tr>
+          <td>3 Oct</td>
+          <td>Event day.</td>
+          <td>Controlled B-race effort. Finish with enough legs to recover into the Border block.</td>
+        </tr>
+        <tr>
+          <td>Departure</td>
+          <td>As planned.</td>
+          <td>Prefer sleep and easy walking after the race. Avoid stacking travel stress immediately after a hard descent if possible.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Race Week Rules</h2>
+    <div class="grid cols-2">
+      <div class="note">
+        <h3>Do</h3>
+        <ul>
+          <li>Carry mandatory kit seriously: shell, headlamp, calories, hydration, phone, ID, and basic first aid.</li>
+          <li>Use trekking poles if allowed and if you have practiced with them.</li>
+          <li>Eat early: start fueling before the climb feels hard.</li>
+          <li>Use short steps and hands-on-knees hiking on steep grades.</li>
+          <li>Keep descents smooth, not aggressive.</li>
+        </ul>
+      </div>
+      <div class="note warning">
+        <h3>Do Not</h3>
+        <ul>
+          <li>Do not chase road-run pace or half-marathon psychology.</li>
+          <li>Do not sprint the first climb to stay with a group.</li>
+          <li>Do not bomb rocky downhill sections for time.</li>
+          <li>Do not skip layers because it feels warm at the start.</li>
+          <li>Do not ignore dizziness, nausea, unusual breathlessness, or coordination changes.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Altitude And Terrain Effects</h2>
+    <p>
+      The altitude is high enough to change breathing and pacing but not high enough to excuse poor execution. The main effect will be
+      elevated effort on climbs, slower recovery after surges, and a higher cost for panic pacing. Terrain risk is just as important:
+      uneven rocks and descents can create more damage than the climb itself.
+    </p>
+    <div class="note decision" style="margin-top:14px">
+      <h3>Practical Pacing Rule</h3>
+      <p>If breathing feels ragged for more than 2-3 minutes, switch to a deliberate hike. If footing needs attention, walk. If the trail is smooth and effort is controlled, run. The watch pace is secondary.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Training Priorities Before Indrahar</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Priority</th>
+          <th>Workout Bias</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Climbing durability</td>
+          <td>Incline treadmill hikes, hill repeats, step-ups, split squats.</td>
+          <td>The course is uphill effort first, running event second.</td>
+        </tr>
+        <tr>
+          <td>Downhill resilience</td>
+          <td>Controlled downhill strides, eccentric quad work, step-downs.</td>
+          <td>Descent damage can compromise the two weeks after the race.</td>
+        </tr>
+        <tr>
+          <td>Foot and ankle control</td>
+          <td>Single-leg balance, calf work, trail exposure, careful technical running.</td>
+          <td>Reports repeatedly mention rocks, boulders, slips, and ankle twists.</td>
+        </tr>
+        <tr>
+          <td>Altitude tolerance</td>
+          <td>Arrive early, take the 8,500-9,000 ft acclimatization trip easy, sleep well.</td>
+          <td>Fitness helps, but breathing control and calm pacing matter at Snow Line altitude.</td>
+        </tr>
+        <tr>
+          <td>Border protection</td>
+          <td>No massive taper, no all-out race, no reckless downhill.</td>
+          <td>Indrahar serves the Border build only if recovery stays manageable.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Source Notes</h2>
+    <ul>
+      <li><a href="https://zenmountain.in/event/indrahar-summit-run/">Zen Mountain Indrahar Summit Run page</a> for the 20K Snow Line category, max altitude, and runner/trekker suitability.</li>
+      <li><a href="https://www.townscript.com/e/summit-run-indrahar-2026">Townscript Summit Run Indrahar listing</a> for the 20K Snow Line route language and double-ridge description.</li>
+      <li><a href="https://itra.run/Races/RaceDetails/94308">ITRA Summit Run Indrahar 2024 page</a> for 19.26 km, elevation gain/loss, and 10-hour time limit reference.</li>
+      <li><a href="https://runninginindia.rocks/?p=34404">Running In India race report</a> for Level 3 / 20K terrain notes, rocks/boulders, gear check, and safety briefing context.</li>
+      <li><a href="https://www.milangupta.io/blog/indrahar-summit-run/">Milan Gupta's Indrahar race experience</a> for route feel, early start, Snow Line timing, support, boulder/rock terrain, and altitude/breathing commentary.</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
