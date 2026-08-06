@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week Plan</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18212f;
+      --muted: #667085;
+      --line: #d7dde5;
+      --paper: #ffffff;
+      --soft: #f4f7fb;
+      --run: #0f766e;
+      --strength: #9a3412;
+      --rest: #64748b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #edf1f5;
+    }
+
+    main {
+      width: min(1120px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      padding: 0 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .range {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .summary {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .week {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .day {
+      min-height: 220px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .day-head {
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .dow {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .date {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .items {
+      display: grid;
+      gap: 8px;
+      padding: 10px;
+    }
+
+    .workout {
+      border-left: 4px solid var(--rest);
+      background: #f8fafc;
+      border-radius: 6px;
+      padding: 9px 10px;
+    }
+
+    .workout.run { border-left-color: var(--run); }
+    .workout.strength { border-left-color: var(--strength); }
+
+    .time {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .title {
+      margin-top: 3px;
+      font-size: 14px;
+      font-weight: 720;
+      line-height: 1.25;
+    }
+
+    .empty {
+      padding: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .week { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      header { align-items: start; flex-direction: column; }
+      .summary { justify-content: flex-start; }
+    }
+
+    @media (max-width: 620px) {
+      main { width: min(100% - 20px, 1120px); padding-top: 18px; }
+      .week { grid-template-columns: 1fr; }
+      .day { min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Week Plan</h1>
+        <div class="range">Monday 3 Aug - Sunday 9 Aug 2026</div>
+      </div>
+      <div class="summary" aria-label="Week summary">
+        <span class="pill">5 runs</span>
+        <span class="pill">3 strength</span>
+        <span class="pill">46 km run target</span>
+      </div>
+    </header>
+
+    <section class="week" aria-label="Workout week starting Monday morning">
+      <article class="day">
+        <div class="day-head">
+          <div class="dow">Monday</div>
+          <div class="date">3 Aug</div>
+        </div>
+        <div class="items">
+          <div class="workout strength">
+            <div class="time">7:30 PM - 8:20 PM</div>
+            <div class="title">Upper + Mobility</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day">
+        <div class="day-head">
+          <div class="dow">Tuesday</div>
+          <div class="date">4 Aug</div>
+        </div>
+        <div class="items">
+          <div class="workout run">
+            <div class="time">7:30 PM - 8:35 PM</div>
+            <div class="title">Easy Run + Strides - 8 km</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day">
+        <div class="day-head">
+          <div class="dow">Wednesday</div>
+          <div class="date">5 Aug</div>
+        </div>
+        <div class="items">
+          <div class="workout strength">
+            <div class="time">6:30 AM - 7:30 AM</div>
+            <div class="title">Fullbody Strength - Moderate</div>
+          </div>
+          <div class="workout run">
+            <div class="time">7:30 PM - 8:30 PM</div>
+            <div class="title">Easy Run - 7 km</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day">
+        <div class="day-head">
+          <div class="dow">Thursday</div>
+          <div class="date">6 Aug</div>
+        </div>
+        <div class="items">
+          <div class="workout run">
+            <div class="time">7:30 PM - 8:35 PM</div>
+            <div class="title">Recovery Run - 8 km</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day">
+        <div class="day-head">
+          <div class="dow">Friday</div>
+          <div class="date">7 Aug</div>
+        </div>
+        <div class="items">
+          <div class="workout strength">
+            <div class="time">6:30 AM - 7:20 AM</div>
+            <div class="title">Upper/Core + Light Lower</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day">
+        <div class="day-head">
+          <div class="dow">Saturday</div>
+          <div class="date">8 Aug</div>
+        </div>
+        <div class="items">
+          <div class="workout run">
+            <div class="time">7:00 AM - 7:35 AM</div>
+            <div class="title">Easy Run - 4 km</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day">
+        <div class="day-head">
+          <div class="dow">Sunday</div>
+          <div class="date">9 Aug</div>
+        </div>
+        <div class="items">
+          <div class="workout run">
+            <div class="time">6:00 AM - 8:25 AM</div>
+            <div class="title">Long Run - 19 km</div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
