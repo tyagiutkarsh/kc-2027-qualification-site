@@ -1,67 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Week Plan</title>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Week Plan</title>
   <style>
-    :root { color-scheme:light; --ink:#18212f; --muted:#667085; --line:#d7dde5; --paper:#fff; --soft:#f4f7fb; --run:#0f766e; --strength:#9a3412; --swim:#2563eb; --rest:#64748b; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:#edf1f5; }
-    main { width:min(1120px,calc(100% - 28px)); margin:0 auto; padding:28px 0 40px; }
-    header { display:flex; justify-content:space-between; align-items:end; gap:16px; padding-bottom:18px; border-bottom:1px solid var(--line); margin-bottom:18px; }
-    h1 { margin:0; font-size:clamp(28px,4vw,44px); line-height:1.05; }
-    .range { margin-top:8px; color:var(--muted); font-size:15px; }
-    .summary { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-    .pill { border:1px solid var(--line); background:var(--paper); border-radius:999px; padding:7px 10px; font-size:13px; color:var(--muted); white-space:nowrap; }
-    .week { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:10px; }
-    .day { min-height:260px; border:1px solid var(--line); border-radius:8px; background:var(--paper); overflow:hidden; }
-    .day-head { padding:12px; border-bottom:1px solid var(--line); background:var(--soft); }
-    .dow { font-size:15px; font-weight:750; }
-    .date { margin-top:2px; color:var(--muted); font-size:12px; }
-    .items { display:grid; gap:8px; padding:10px; }
-    .workout { border-left:4px solid var(--rest); background:#f8fafc; border-radius:6px; padding:9px 10px; }
-    .workout.run { border-left-color:var(--run); }
-    .workout.strength { border-left-color:var(--strength); }
-    .workout.swim { border-left-color:var(--swim); }
-    .time { color:var(--muted); font-size:12px; font-weight:650; }
-    .title { margin-top:3px; font-size:14px; font-weight:720; line-height:1.25; }
-    @media (max-width:980px) { .week{grid-template-columns:repeat(2,minmax(0,1fr))} header{align-items:start;flex-direction:column}.summary{justify-content:flex-start} }
-    @media (max-width:620px) { main{width:min(100% - 20px,1120px);padding-top:18px}.week{grid-template-columns:1fr}.day{min-height:0} }
+    :root{color-scheme:light;--ink:#18212f;--muted:#667085;--line:#d7dde5;--paper:#fff;--soft:#f4f7fb;--run:#0f766e;--strength:#9a3412;--swim:#2563eb;--rest:#64748b}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#edf1f5}main{width:min(1120px,calc(100% - 28px));margin:0 auto;padding:28px 0 40px}header{display:flex;justify-content:space-between;align-items:end;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:18px}h1{margin:0;font-size:clamp(28px,4vw,44px);line-height:1.05}.range{margin-top:8px;color:var(--muted);font-size:15px}.summary{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.pill{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 10px;font-size:13px;color:var(--muted);white-space:nowrap}.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}.day{min-height:250px;border:1px solid var(--line);border-radius:8px;background:var(--paper);overflow:hidden}.day-head{padding:12px;border-bottom:1px solid var(--line);background:var(--soft)}.dow{font-size:15px;font-weight:750}.date{margin-top:2px;color:var(--muted);font-size:12px}.items{display:grid;gap:8px;padding:10px}.workout{border-left:4px solid var(--rest);background:#f8fafc;border-radius:6px;padding:9px 10px}.workout.run{border-left-color:var(--run)}.workout.strength{border-left-color:var(--strength)}.workout.swim{border-left-color:var(--swim)}.time{color:var(--muted);font-size:12px;font-weight:650}.title{margin-top:3px;font-size:14px;font-weight:720;line-height:1.25}.empty{padding:12px;color:var(--muted);font-size:14px}@media(max-width:980px){.week{grid-template-columns:repeat(2,minmax(0,1fr))}header{align-items:start;flex-direction:column}.summary{justify-content:flex-start}}@media(max-width:620px){main{width:min(100% - 20px,1120px);padding-top:18px}.week{grid-template-columns:1fr}.day{min-height:0}}
   </style>
 </head>
-<body>
-<main>
-  <header>
-    <div><h1>Week Plan</h1><div class="range">Monday 17 Aug - Sunday 23 Aug 2026</div></div>
-    <div class="summary" aria-label="Week summary"><span class="pill">6 runs</span><span class="pill">2 swims</span><span class="pill">2 gym</span><span class="pill">55 km</span></div>
-  </header>
-  <section class="week" aria-label="Workout week starting Monday morning">
-    <article class="day"><div class="day-head"><div class="dow">Monday</div><div class="date">17 Aug</div></div><div class="items">
-      <div class="workout strength"><div class="time">7:30 PM - 8:15 PM</div><div class="title">Fullbody Gym - Re-entry</div></div>
-    </div></article>
-    <article class="day"><div class="day-head"><div class="dow">Tuesday</div><div class="date">18 Aug</div></div><div class="items">
-      <div class="workout swim"><div class="time">6:00 AM - 7:00 AM</div><div class="title">Swim - Technique + Aerobic</div></div>
-      <div class="workout run"><div class="time">7:30 PM - 8:30 PM</div><div class="title">Easy Run - 7 km</div></div>
-    </div></article>
-    <article class="day"><div class="day-head"><div class="dow">Wednesday</div><div class="date">19 Aug</div></div><div class="items">
-      <div class="workout run"><div class="time">4:30 AM - 7:40 AM</div><div class="title">Wednesday Long Run - 22 km</div></div>
-    </div></article>
-    <article class="day"><div class="day-head"><div class="dow">Thursday</div><div class="date">20 Aug</div></div><div class="items">
-      <div class="workout swim"><div class="time">6:00 AM - 7:00 AM</div><div class="title">Swim - Technique + Aerobic</div></div>
-      <div class="workout run"><div class="time">7:30 PM - 8:10 PM</div><div class="title">Recovery Run - 4 km</div></div>
-    </div></article>
-    <article class="day"><div class="day-head"><div class="dow">Friday</div><div class="date">21 Aug</div></div><div class="items">
-      <div class="workout run"><div class="time">6:30 AM - 7:05 AM</div><div class="title">Easy Run - 4 km</div></div>
-      <div class="workout strength"><div class="time">7:30 PM - 8:15 PM</div><div class="title">Upper + Core Gym</div></div>
-    </div></article>
-    <article class="day"><div class="day-head"><div class="dow">Saturday</div><div class="date">22 Aug</div></div><div class="items">
-      <div class="workout run"><div class="time">7:00 AM - 7:45 AM</div><div class="title">Very Easy Run - 5 km</div></div>
-    </div></article>
-    <article class="day"><div class="day-head"><div class="dow">Sunday</div><div class="date">23 Aug</div></div><div class="items">
-      <div class="workout run"><div class="time">4:30 AM - 6:30 AM</div><div class="title">Tuffman 10K - 60 min Pacer</div></div>
-    </div></article>
+<body><main>
+  <header><div><h1>Week Plan</h1><div class="range">Monday 24 Aug - Sunday 30 Aug 2026</div></div><div class="summary"><span class="pill">4 runs</span><span class="pill">1 swim</span><span class="pill">1 gym</span><span class="pill">48 km</span></div></header>
+  <section class="week">
+    <article class="day"><div class="day-head"><div class="dow">Monday</div><div class="date">24 Aug</div></div><div class="empty">No planned workout</div></article>
+    <article class="day"><div class="day-head"><div class="dow">Tuesday</div><div class="date">25 Aug</div></div><div class="empty">No planned workout</div></article>
+    <article class="day"><div class="day-head"><div class="dow">Wednesday</div><div class="date">26 Aug</div></div><div class="empty">No planned workout</div></article>
+    <article class="day"><div class="day-head"><div class="dow">Thursday</div><div class="date">27 Aug</div></div><div class="items"><div class="workout swim"><div class="time">6:00 AM - 7:00 AM</div><div class="title">Swim - Technique + Aerobic</div></div><div class="workout run"><div class="time">7:30 PM - 8:50 PM</div><div class="title">Easy Run - 10 km</div></div></div></article>
+    <article class="day"><div class="day-head"><div class="dow">Friday</div><div class="date">28 Aug</div></div><div class="items"><div class="workout run"><div class="time">6:30 AM - 7:20 AM</div><div class="title">Recovery Run - 6 km</div></div><div class="workout strength"><div class="time">7:30 PM - 8:15 PM</div><div class="title">Fullbody Gym - Conservative</div></div></div></article>
+    <article class="day"><div class="day-head"><div class="dow">Saturday</div><div class="date">29 Aug</div></div><div class="items"><div class="workout run"><div class="time">5:10 AM - 7:45 AM</div><div class="title">Long Run - 18 km</div></div></div></article>
+    <article class="day"><div class="day-head"><div class="dow">Sunday</div><div class="date">30 Aug</div></div><div class="items"><div class="workout run"><div class="time">6:00 AM - 8:00 AM</div><div class="title">Easy Run - 14 km</div></div></div></article>
   </section>
-</main>
-</body>
-</html>
+</main></body></html>
